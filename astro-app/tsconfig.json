@@ -7,7 +7,7 @@
     "strict": true,
     "importsNotUsedAsValues": "remove",
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "noEmit": false,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
