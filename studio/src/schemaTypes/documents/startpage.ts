@@ -43,6 +43,11 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'body',
+      title: 'Body',
+      type: 'blockContent',
+    }),
+    defineField({
       name: 'features',
       title: 'Features',
       type: 'array',

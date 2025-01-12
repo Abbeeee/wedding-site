@@ -4,13 +4,18 @@ import type { ImageAsset, Slug } from "@sanity/types";
 import groq from "groq";
 
 export async function getPosts(): Promise<Post[]> {
-  return await sanityClient.fetch(groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`);
+  return await sanityClient.fetch(
+    groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`,
+  );
 }
 
 export async function getPost(slug: string): Promise<Post> {
-  return await sanityClient.fetch(groq`*[_type == "post" && slug.current == $slug][0]`, {
-    slug,
-  });
+  return await sanityClient.fetch(
+    groq`*[_type == "post" && slug.current == $slug][0]`,
+    {
+      slug,
+    },
+  );
 }
 
 export async function getStartPage(): Promise<StartPage> {
@@ -37,6 +42,7 @@ export interface StartPage {
     text: string;
     link: string;
   };
+  body: PortableTextBlock[];
   features?: {
     title: string;
     description: string;

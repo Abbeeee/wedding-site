@@ -10,6 +10,7 @@ export default {
 				'black': '#000000',
 				"primary": "#262a34",
 				"secondary": "#1E61CD",
+				"accent": "#757263",
 				"background": "#f2f1ee",
 			  },
 			maxWidth: {
