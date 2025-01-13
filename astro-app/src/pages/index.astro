@@ -1,47 +1,53 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { getPosts, getStartPage } from "../utils/sanity";
-import { urlFor } from "../utils/image";
-import { PortableText } from "astro-portabletext";
-import Card from "../components/Card.astro";
-import Welcome from "../components/Welcome.astro";
+import Layout from '../layouts/Layout.astro';
+import { getPosts, getStartPage } from '../utils/sanity';
+import { urlFor } from '../utils/image';
+import { PortableText } from 'astro-portabletext';
+import Card from '../components/Card.astro';
+import Welcome from '../components/Welcome.astro';
+import Slider from '../components/Slider.astro';
 
 const posts = await getPosts();
 const startPage = await getStartPage();
 ---
 
 <Layout title="Antonia & Henrik">
+	<!-- HERO -->
+	<section class="mx-auto mb-8 text-center">
+		<div class="my-4">
+			<h1 class="mb-4 text-5xl font-bold">{startPage?.title}</h1>
+			<p class="text-2xl font-bold">{startPage?.subtitle}</p>
+		</div>
 
-  <!-- HERO -->
-  <section class="mx-auto mb-8 text-center">
+		<!-- {
+			startPage?.heroImage && (
+				<img
+					class="col-start-1 row-start-1 w-full h-[400px] object-cover"
+					src={urlFor(startPage?.heroImage).width(1024).height(400).url()}
+					alt={startPage?.heroImage.alt || ''}
+				/>
+			)
+		} -->
 
-    <div class="my-4">
-      <h1 class="mb-4 font-bold text-5xl">{startPage?.title}</h1>
-      <p class="font-bold text-2xl">{startPage?.subtitle}</p>
-    </div>
-    
-    {startPage?.heroImage && (
-      <img
-        class="col-start-1 row-start-1 w-full h-[400px] object-cover"
-        src={urlFor(startPage?.heroImage).width(1024).height(400).url()}
-        alt={startPage?.heroImage.alt || ""}
-      />
-    )}
+		<Slider />
+	</section>
 
-  </section>
+	<section class="mx-auto mb-8">
+		<div class="block-content">
+			<PortableText value={startPage?.body} />
+		</div>
+	</section>
 
-  <section class="mx-auto mb-8">
-    <div class="block-content">
-      <PortableText value={startPage?.body} />
-    </div>
-  </section>
+	<section class="mx-auto mb-8">
+		<iframe
+			class="h-screen w-full border-2 p-2 shadow-sm"
+			src="https://docs.google.com/forms/d/e/1FAIpQLScZZ2N_TRllcCGIK3lADRdoZze6qEaDO4ppt3hzQXjmbM6FDA/viewform?embedded=true"
+			width="640"
+			height="1200">Loading…</iframe
+		>
+	</section>
 
-  <section class="mx-auto mb-8">
-    <iframe class="border-2 shadow-sm p-2 w-full h-screen" src="https://docs.google.com/forms/d/e/1FAIpQLScZZ2N_TRllcCGIK3lADRdoZze6qEaDO4ppt3hzQXjmbM6FDA/viewform?embedded=true" width="640" height="1200">Loading…</iframe>
-  </section>
-
-  <section>
-    {posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}
-  </section>
-
+	<section>
+		{posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}
+	</section>
 </Layout>

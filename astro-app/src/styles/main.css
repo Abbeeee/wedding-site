@@ -61,35 +61,35 @@ body {
 	margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-family-sans);
+	margin: 1em 0 0.5em;
+	font-weight: bold;
+}
+
+h1 {
+	font-size: var(--font-size-5);
+}
+h2 {
+	font-size: var(--font-size-4);
+}
+
+h3 {
+	font-size: var(--font-size-3);
+}
+h4 {
+	font-size: var(--font-size-2);
+}
+h5 {
+	font-size: var(--font-size-1);
+}
+
 .block-content {
-	& h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: var(--font-family-sans);
-		margin: 1em 0 0.5em;
-		font-weight: bold;
-	}
-
-	& h1 {
-		font-size: var(--font-size-5);
-	}
-	& h2 {
-		font-size: var(--font-size-4);
-	}
-
-	& h3 {
-		font-size: var(--font-size-3);
-	}
-	& h4 {
-		font-size: var(--font-size-2);
-	}
-	& h5 {
-		font-size: var(--font-size-1);
-	}
-
 	& ul,
 	ol {
 		list-style: unset;

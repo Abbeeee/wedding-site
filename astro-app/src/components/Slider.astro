@@ -1,0 +1,43 @@
+---
+import { getStartPage } from '../utils/sanity';
+import { urlFor } from '../utils/image';
+import { Splide, SplideSlide } from 'astro-splide';
+import '@splidejs/react-splide/css';
+
+const startPage = await getStartPage();
+---
+
+{
+	startPage?.heroSlider && (
+		<>
+			<Splide
+				options={{
+					rewind: true,
+					arrows: false,
+					pagination: false,
+					type: 'fade',
+					autoplay: true,
+					speed: 2000,
+					interval: 4000,
+					pauseOnHover: false,
+					pauseOnFocus: false
+				}}
+				aria-label="Bildspel med bilder på Antonia och Henrik"
+			>
+				{startPage?.heroSlider.images.map((image) => (
+					<SplideSlide>
+						<img
+							class="h-[400px] object-cover"
+							src={urlFor(image).width(1024).height(400).url()}
+							alt={(image.alt as string) || ''}
+						/>
+					</SplideSlide>
+				))}
+
+				{/* <div class="right-0 bottom-0 left-0 z-10 absolute w-full !h-4 splide__progress">
+					<div class="opacity-50 w-full !h-4 splide__progress__bar" />
+				</div> */}
+			</Splide>
+		</>
+	)
+}
