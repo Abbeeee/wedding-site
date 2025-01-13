@@ -34,6 +34,11 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'heroSlider',
+      title: 'Hero Slider',
+      type: 'gallery',
+    }),
+    defineField({
       name: 'callToAction',
       title: 'Call to Action',
       type: 'object',
