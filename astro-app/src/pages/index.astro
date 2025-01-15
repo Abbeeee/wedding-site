@@ -13,9 +13,9 @@ const startPage = await getStartPage();
 
 <Layout title="Antonia & Henrik">
 	<!-- HERO -->
-	<section class="mx-auto mb-16 mt-4 text-center">
+	<section class="mx-auto mb-16 mt-4 text-center md:mt-20">
 		<div class="mb-8">
-			<h1 class="mb-2 mt-0 text-5xl font-bold">{startPage?.title}</h1>
+			<h1 class="mb-2 mt-0 text-5xl font-bold md:text-6xl">{startPage?.title}</h1>
 			<p class="text-2xl font-bold">{startPage?.subtitle}</p>
 		</div>
 
@@ -34,8 +34,8 @@ const startPage = await getStartPage();
 
 	{
 		startPage?.bodyArea && (
-			<section class="mx-auto my-20">
-				<div class="block-content text-center [&>h2]:text-4xl [&>p]:text-xl">
+			<section class="mx-auto my-20 max-w-2xl">
+				<div class="block-content text-pretty text-center [&>h2]:text-4xl md:[&>h2]:text-5xl [&>p]:text-xl md:[&>p]:text-2xl">
 					<PortableText value={startPage?.bodyArea} />
 				</div>
 			</section>
@@ -44,10 +44,10 @@ const startPage = await getStartPage();
 
 	{
 		startPage?.features && (
-			<section class="mx-auto my-20">
-				<div class="text-center">
+			<section class="mx-auto my-20 max-w-2xl">
+				<div class="">
 					{startPage.features.map((feature) => (
-						<div class="">
+						<div class="text-center">
 							{feature.title && <h3 class="text-3xl font-bold">{feature.title}</h3>}
 							{feature.description && <PortableText value={feature?.description} />}
 						</div>
