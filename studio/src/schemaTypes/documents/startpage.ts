@@ -18,6 +18,21 @@ export default defineType({
       description: 'A short subtitle or tagline for the page',
     }),
     defineField({
+      name: 'heroSlider',
+      title: 'Hero Slider',
+      type: 'gallery',
+    }),
+    defineField({
+      name: 'bodyArea',
+      title: 'Text yta #1',
+      type: 'blockContent',
+    }),
+    defineField({
+      name: 'bodyArea2',
+      title: 'Text yta #2',
+      type: 'blockContent',
+    }),
+    defineField({
       name: 'heroImage',
       title: 'Hero Image',
       type: 'image',
@@ -32,25 +47,6 @@ export default defineType({
           type: 'string',
         }),
       ],
-    }),
-    defineField({
-      name: 'heroSlider',
-      title: 'Hero Slider',
-      type: 'gallery',
-    }),
-    defineField({
-      name: 'callToAction',
-      title: 'Call to Action',
-      type: 'object',
-      fields: [
-        {name: 'text', title: 'Text', type: 'string', description: 'Button text'},
-        {name: 'link', title: 'Link', type: 'url', description: 'Link URL'},
-      ],
-    }),
-    defineField({
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent',
     }),
     defineField({
       name: 'features',
@@ -71,6 +67,15 @@ export default defineType({
             {name: 'icon', title: 'Icon', type: 'image', description: 'Feature icon'},
           ],
         },
+      ],
+    }),
+    defineField({
+      name: 'callToAction',
+      title: 'Call to Action',
+      type: 'object',
+      fields: [
+        {name: 'text', title: 'Text', type: 'string', description: 'Button text'},
+        {name: 'link', title: 'Link', type: 'url', description: 'Link URL'},
       ],
     }),
   ],

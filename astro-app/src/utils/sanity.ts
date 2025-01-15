@@ -32,18 +32,19 @@ export interface StartPage {
 	_createdAt: string;
 	title?: string;
 	subtitle?: string;
-	heroImage?: ImageAsset & { alt?: string };
 	heroSlider?: {
 		images: ImageAsset[];
 	};
-	callToAction?: {
-		text: string;
-		link: string;
-	};
-	body: PortableTextBlock[];
+	bodyArea: PortableTextBlock[];
+	bodyArea2: PortableTextBlock[];
+	heroImage?: ImageAsset & { alt?: string };
 	features?: {
 		title: string;
 		description: string;
 		icon: ImageAsset & { alt?: string };
 	}[];
+	callToAction?: {
+		text: string;
+		link: string;
+	};
 }
