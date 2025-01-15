@@ -13,9 +13,9 @@ const startPage = await getStartPage();
 
 <Layout title="Antonia & Henrik">
 	<!-- HERO -->
-	<section class="mx-auto mb-8 text-center">
-		<div class="my-4">
-			<h1 class="mb-4 text-5xl font-bold">{startPage?.title}</h1>
+	<section class="mx-auto mb-16 mt-4 text-center">
+		<div class="mb-8">
+			<h1 class="mb-2 mt-0 text-5xl font-bold">{startPage?.title}</h1>
 			<p class="text-2xl font-bold">{startPage?.subtitle}</p>
 		</div>
 
@@ -32,22 +32,42 @@ const startPage = await getStartPage();
 		<Slider />
 	</section>
 
-	<section class="mx-auto mb-8">
-		<div class="block-content">
-			<PortableText value={startPage?.body} />
-		</div>
-	</section>
+	{
+		startPage?.bodyArea && (
+			<section class="mx-auto my-20">
+				<div class="block-content text-center [&>h2]:text-4xl [&>p]:text-xl">
+					<PortableText value={startPage?.bodyArea} />
+				</div>
+			</section>
+		)
+	}
 
-	<section class="mx-auto mb-8">
-		<iframe
-			class="h-screen w-full border-2 p-2 shadow-sm"
-			src="https://docs.google.com/forms/d/e/1FAIpQLScZZ2N_TRllcCGIK3lADRdoZze6qEaDO4ppt3hzQXjmbM6FDA/viewform?embedded=true"
-			width="640"
-			height="1200">Loading…</iframe
-		>
-	</section>
+	{
+		startPage?.features && (
+			<section class="mx-auto my-20">
+				<div class="text-center">
+					{startPage.features.map((feature) => (
+						<div class="">
+							{feature.title && <h3 class="text-3xl font-bold">{feature.title}</h3>}
+							{feature.description && <PortableText value={feature?.description} />}
+						</div>
+					))}
+				</div>
+			</section>
+		)
+	}
 
-	<section>
+	{
+		startPage?.bodyArea2 && (
+			<section class="mx-auto mb-8">
+				<div class="block-content">
+					<PortableText value={startPage?.bodyArea2} />
+				</div>
+			</section>
+		)
+	}
+
+	<!-- <section>
 		{posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}
-	</section>
+	</section> -->
 </Layout>

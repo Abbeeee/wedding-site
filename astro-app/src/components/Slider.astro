@@ -27,8 +27,8 @@ const startPage = await getStartPage();
 				{startPage?.heroSlider.images.map((image) => (
 					<SplideSlide>
 						<img
-							class="h-[400px] object-cover"
-							src={urlFor(image).width(1024).height(400).url()}
+							class="h-[420px] object-cover"
+							src={urlFor(image).width(1024).height(420).url()}
 							alt={(image.alt as string) || ''}
 						/>
 					</SplideSlide>

@@ -61,8 +61,8 @@ export default defineType({
             {
               name: 'description',
               title: 'Description',
-              type: 'text',
-              description: 'Short description of the feature',
+              type: 'blockContent',
+              description: 'A description',
             },
             {name: 'icon', title: 'Icon', type: 'image', description: 'Feature icon'},
           ],

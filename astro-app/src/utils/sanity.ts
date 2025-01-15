@@ -40,7 +40,7 @@ export interface StartPage {
 	heroImage?: ImageAsset & { alt?: string };
 	features?: {
 		title: string;
-		description: string;
+		description: PortableTextBlock[];
 		icon: ImageAsset & { alt?: string };
 	}[];
 	callToAction?: {
