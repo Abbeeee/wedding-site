@@ -44,12 +44,7 @@ const RsvpForm: React.FC = () => {
 
 	return (
 		<>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				method="post"
-				action="https://script.google.com/macros/s/AKfycbw0WWm1Qjy8eWI3_x9glOvfKnJ0ZXXW94mRMuzD4gIk_MbYw93pKqXfK7_KDFuwRJoo8g/exec"
-				id="my-form"
-			>
+			<form onSubmit={handleSubmit(onSubmit)} noValidate>
 				<div>
 					<label htmlFor="Email">Email:</label>
 					<input
