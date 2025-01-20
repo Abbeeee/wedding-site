@@ -6,6 +6,7 @@ import { PortableText } from 'astro-portabletext';
 import Card from '../components/Card.astro';
 import Welcome from '../components/Welcome.astro';
 import Slider from '../components/Slider.astro';
+import RsvpForm from '../components/RsvpForm.tsx';
 
 const posts = await getPosts();
 const startPage = await getStartPage();
@@ -66,6 +67,8 @@ const startPage = await getStartPage();
 			</section>
 		)
 	}
+
+	<RsvpForm client:only />
 
 	<!-- <section>
 		{posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}
