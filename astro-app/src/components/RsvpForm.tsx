@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { useForm, type SubmitHandler } from 'react-hook-form';
+import { type SubmitHandler } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
+import InputField from './Form/InputField';
+import Button from './Button';
 
 type FormData = {
 	Email: string;
@@ -10,11 +13,9 @@ type FormData = {
 const RsvpForm: React.FC = () => {
 	const [serverResponse, setServerResponse] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 	const {
-		register,
 		handleSubmit,
-		watch,
-		formState: { isSubmitting, errors, isSubmitSuccessful }
-	} = useForm<FormData>();
+		formState: { isSubmitting, isSubmitSuccessful, errors }
+	} = useFormContext<FormData>();
 
 	const onSubmit: SubmitHandler<FormData> = async (data) => {
 		try {
@@ -40,47 +41,33 @@ const RsvpForm: React.FC = () => {
 		}
 	};
 
-	// console.log(watch('Email')); // watch input value by passing the name of it
-
 	return (
 		<>
 			<form onSubmit={handleSubmit(onSubmit)} noValidate>
-				<div>
-					<label htmlFor="Email">Email:</label>
-					<input
-						id="email"
-						type="email"
-						{...register('Email', {
-							required: 'Email is required',
-							pattern: {
-								value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-								message: 'Invalid email address'
-							}
-						})}
-					/>
-					{errors.Email && typeof errors.Email.message === 'string' && <p>{errors.Email.message}</p>}
-				</div>
+				<InputField
+					name="Email"
+					label="Email"
+					type="email"
+					required="Email is required"
+					pattern={{ value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email address' }}
+				/>
+				<InputField name="Name" label="Name" type="text" required="Name is required" />
+				<InputField name="Allergies" label="Allergies" type="text" />
 
-				<div>
-					<label htmlFor="Name">Name:</label>
-					<input id="name" {...register('Name', { required: 'Name is required' })} />
-					{errors.Name && typeof errors.Name.message === 'string' && <p>{errors.Name.message}</p>}
-				</div>
-
-				<div>
-					<label htmlFor="Allergies">Allergies:</label>
-					<input id="allergies" {...register('Allergies')} />
-					{errors.Allergies && typeof errors.Allergies.message === 'string' && <p>{errors.Allergies.message}</p>}
-				</div>
-
-				<button type="submit">Submit</button>
-				{isSubmitting && <p>Submitting...</p>}
-				{isSubmitSuccessful && <p>Skickat!</p>}
+				<Button
+					type="submit"
+					className="rounded-sm bg-primary px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-600"
+					isSubmitting={isSubmitting}
+					isSubmitSuccessful={isSubmitSuccessful}
+					disabled={isSubmitSuccessful}
+				>
+					Submit
+				</Button>
 			</form>
 			{serverResponse && (
 				<p
 					style={{
-						color: serverResponse.type === 'success' ? 'green' : 'red'
+						color: serverResponse.type === 'success' ? 'green' : 'text-red-800'
 					}}
 				>
 					{serverResponse.message}
