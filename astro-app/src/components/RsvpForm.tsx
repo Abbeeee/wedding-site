@@ -20,7 +20,7 @@ const RsvpForm: React.FC = () => {
 	const onSubmit: SubmitHandler<FormData> = async (data) => {
 		try {
 			const response = await fetch(
-				'https://script.google.com/macros/s/AKfycbxvnIli_zeXqJ3iqI_zxFQu7gIfTI4-9acCKWIR1QI60gf0TW28Qkg2hJW4BDWiABeLhw/exec',
+				'https://script.google.com/macros/s/AKfycbydLowU70XdoxUXH39yvVAozoQoVFgeH1cDJ-90tGFu88WXEUdOUxuYKLi8f8eKNp5lfg/exec',
 				{
 					method: 'POST',
 					headers: {
