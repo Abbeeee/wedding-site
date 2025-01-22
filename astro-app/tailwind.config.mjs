@@ -11,7 +11,7 @@ export default {
 				"primary": "#262a34",
 				"secondary": "#1E61CD",
 				"accent": "#757263",
-				"background": "#f2f1ee",
+				"background": "#F5F1EB",
 			  },
 			maxWidth: {
 				'container': 'calc(min(100% - 32px, 1024px))',
