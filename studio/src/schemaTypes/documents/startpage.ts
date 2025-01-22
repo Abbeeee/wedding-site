@@ -23,22 +23,6 @@ export default defineType({
       type: 'gallery',
     }),
     defineField({
-      name: 'heroImage',
-      title: 'Hero Image',
-      type: 'image',
-      description: 'The main image displayed at the top of the page',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Alternative text',
-          type: 'string',
-        }),
-      ],
-    }),
-    defineField({
       name: 'blocks',
       title: 'Blocks',
       type: 'array',
