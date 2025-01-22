@@ -1,12 +1,12 @@
 import {defineType} from 'sanity'
 
 export default defineType({
+  type: 'object',
   name: 'puffBlock',
   title: 'Puffblock',
-  type: 'object',
   fields: [
     {
-      name: 'puffs',
+      name: 'items',
       title: 'Puffar',
       type: 'array',
       description: 'Valfria puffar som visas med centrerad text',
