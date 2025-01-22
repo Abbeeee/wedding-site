@@ -70,6 +70,35 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'blocks',
+      title: 'Blocks',
+      type: 'array',
+      of: [
+        // Define the Textblock schema
+        {
+          name: 'textBlock',
+          title: 'TextBlock',
+          type: 'textBlock',
+        },
+        // Define the Imageblock schema
+        {
+          name: 'imageBlock',
+          title: 'Imageblock',
+          type: 'imageBlock',
+        },
+        {
+          name: 'centerTextBlock',
+          title: 'CenterTextBlock',
+          type: 'centerTextBlock',
+        },
+        {
+          name: 'puffBlock',
+          title: 'PuffBlock',
+          type: 'puffBlock',
+        },
+      ],
+    }),
+    defineField({
       name: 'callToAction',
       title: 'Call to Action',
       type: 'object',

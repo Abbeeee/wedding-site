@@ -43,8 +43,37 @@ export interface StartPage {
 		description: PortableTextBlock[];
 		icon: ImageAsset & { alt?: string };
 	}[];
+	blocks?: (TextBlock | ImageBlock | CenterTextBlock | PuffBlock)[];
 	callToAction?: {
 		text: string;
 		link: string;
 	};
+}
+
+// Define the types for the blocks
+export interface TextBlock {
+	_type: 'textBlock';
+	text: PortableTextBlock[];
+}
+
+export interface ImageBlock {
+	_type: 'imageBlock';
+	image: ImageAsset;
+}
+
+export interface CenterTextBlock {
+	_type: 'centerTextBlock';
+	heading: string;
+	text: string;
+}
+
+export interface PuffBlock {
+	_type: 'puffBlock';
+	items: Array<PuffBlockItem>;
+}
+
+export interface PuffBlockItem {
+	_type: 'puffBlockItem';
+	heading: string;
+	information: PortableTextBlock[];
 }

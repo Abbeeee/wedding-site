@@ -7,6 +7,10 @@ import Card from '../components/Card.astro';
 import Welcome from '../components/Welcome.astro';
 import Slider from '../components/Slider.astro';
 import FormProvider from '../components/FormProvider.tsx';
+import ImageBlock from '../components/ImageBlock';
+import TextBlock from '../components/TextBlock.astro';
+import CenterTextBlock from '../components/CenterTextBlock.astro';
+import PuffBlock from '../components/PuffBlock.astro';
 
 const posts = await getPosts();
 const startPage = await getStartPage();
@@ -66,6 +70,21 @@ const startPage = await getStartPage();
 				</div>
 			</section>
 		)
+	}
+
+	{
+		startPage?.blocks &&
+			startPage.blocks.map((block) => {
+				if (block._type == 'imageBlock') {
+					return <ImageBlock block={block} />;
+				} else if (block._type == 'textBlock') {
+					return <TextBlock block={block} />;
+				} else if (block._type == 'centerTextBlock') {
+					return <CenterTextBlock block={block} />;
+				} else if (block._type == 'puffBlock') {
+					return <PuffBlock block={block} />;
+				}
+			})
 	}
 
 	<FormProvider client:only />
