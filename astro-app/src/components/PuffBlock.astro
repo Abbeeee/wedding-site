@@ -1,20 +1,66 @@
 ---
-import { PortableText } from 'astro-portabletext';
+import { urlFor } from '../utils/image';
 import { PuffBlockItem } from '../utils/sanity';
+import SanityPortableText from './SanityPortableText';
 
 const { block } = Astro.props;
 ---
 
-<section class="mx-auto my-20 max-w-2xl">
-	<div class="">
-		{
-			block.items &&
-				block.items.map((item: PuffBlockItem) => {
-					<div class="text-center">
-						{item.heading && <h3 class="text-3xl font-bold">{item.heading}</h3>}
-						{item.information && <PortableText value={item?.information} />}
-					</div>;
-				})
-		}
-	</div>
+<section class={`mx-auto ${block.centeredText ? 'max-w-2xl' : 'max-w-4xl'}`}>
+	{
+		block.heading && (
+			<h2 class="mx-auto mb-10 mt-0 w-fit text-balance text-4xl sm:mb-14 md:text-5xl">{block.heading}</h2>
+		)
+	}
+	{
+		block.items && (
+			<div
+				class={`xs:gap-12 grid gap-8 ${
+					block.items.length % 2 === 1 ? '[&>div:last-child]:col-span-full' : ''
+				} ${block.centeredText ? 'xs:gap-12 xs:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-8' : 'xs:gap-10 xs:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4'}`}
+			>
+				{block.items.map((item: PuffBlockItem) => {
+					return (
+						<div
+							class={`mx-auto w-full max-w-[420px] overflow-hidden ${block.centeredText ? 'text-center' : 'border-accent-200 rounded-lg border-2 border-solid'}`}
+						>
+							{item.image && (
+								<img
+									class={`block object-cover ${block.centeredText ? 'mx-auto mb-6 size-[150px] rounded-full' : 'h-[200px] w-full'}`}
+									src={urlFor(item.image).url()}
+									alt=""
+								/>
+							)}
+							<div class={`${block.centeredText ? '' : 'xs:p-6 p-4'}`}>
+								{item.heading && <h3 class="mt-0 text-balance text-2xl font-bold sm:text-3xl">{item.heading}</h3>}
+								<div class="block-content">
+									{item.information && <SanityPortableText content={item?.information} client:only="react" />}
+								</div>
+								{item.button && (
+									<a
+										href={item.button.link}
+										class={`button mt-4 ${block.centeredText ? 'mx-auto' : ''}`}
+										target={`${item.button.externalLink ? '_blank' : '_self'}`}
+									>
+										{item.button.text}
+										{item.button.externalLink && (
+											<svg class="ml-1" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+												<g fill="none" stroke="currentColor">
+													<path d="M15 3.5h5.5m0 0V9m0-5.5l-8 8" />
+													<path
+														stroke-linecap="round"
+														d="M11.5 5.5h-4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-4"
+													/>
+												</g>
+											</svg>
+										)}
+									</a>
+								)}
+							</div>
+						</div>
+					);
+				})}
+			</div>
+		)
+	}
 </section>

@@ -53,6 +53,32 @@ export default defineType({
               },
             ],
           },
+          {
+            title: 'Email Link',
+            name: 'email',
+            type: 'object',
+            fields: [
+              {
+                title: 'Email Address',
+                name: 'email',
+                type: 'string',
+                validation: (Rule) => Rule.required().email(),
+              },
+            ],
+          },
+          {
+            title: 'Phone Link',
+            name: 'phone',
+            type: 'object',
+            fields: [
+              {
+                title: 'Phone Number',
+                name: 'phone',
+                type: 'string',
+                validation: (Rule) => Rule.required().regex(/^\+?[0-9]*$/),
+              },
+            ],
+          },
         ],
       },
     }),

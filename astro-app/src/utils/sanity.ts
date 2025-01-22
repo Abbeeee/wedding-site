@@ -50,30 +50,38 @@ export interface StartPage {
 	};
 }
 
-// Define the types for the blocks
 export interface TextBlock {
 	_type: 'textBlock';
-	text: PortableTextBlock[];
+	text?: PortableTextBlock[];
 }
 
 export interface ImageBlock {
 	_type: 'imageBlock';
-	image: ImageAsset;
+	heading?: string;
+	image?: ImageAsset;
 }
 
 export interface CenterTextBlock {
 	_type: 'centerTextBlock';
-	heading: string;
-	text: string;
+	heading?: string;
+	text?: string;
 }
 
 export interface PuffBlock {
 	_type: 'puffBlock';
-	items: Array<PuffBlockItem>;
+	heading?: string;
+	items?: Array<PuffBlockItem>;
+	centeredText?: boolean;
 }
 
 export interface PuffBlockItem {
 	_type: 'puffBlockItem';
-	heading: string;
-	information: PortableTextBlock[];
+	image?: ImageAsset;
+	heading?: string;
+	information?: PortableTextBlock[];
+	button?: {
+		text?: string;
+		link?: string;
+		externalLink?: boolean;
+	};
 }

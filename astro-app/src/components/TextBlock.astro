@@ -1,7 +1,13 @@
 ---
-import { PortableText } from 'astro-portabletext';
+import SanityPortableText from './SanityPortableText';
 
 const { block } = Astro.props;
 ---
 
-{block?.text && <PortableText value={block.text} />}
+{
+	block?.text && (
+		<section class="block-content mx-auto max-w-[60ch] text-pretty">
+			<SanityPortableText content={block.text} client:only="react" />
+		</section>
+	)
+}

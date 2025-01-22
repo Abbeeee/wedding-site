@@ -43,7 +43,7 @@ const RsvpForm: React.FC = () => {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)} noValidate>
+			<form className="mx-auto max-w-2xl" onSubmit={handleSubmit(onSubmit)} noValidate>
 				<InputField
 					name="Email"
 					label="Email"
@@ -56,12 +56,12 @@ const RsvpForm: React.FC = () => {
 
 				<Button
 					type="submit"
-					className="rounded-sm bg-primary px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-600"
+					className="button"
 					isSubmitting={isSubmitting}
 					isSubmitSuccessful={isSubmitSuccessful}
 					disabled={isSubmitSuccessful}
 				>
-					Submit
+					Skicka
 				</Button>
 			</form>
 			{serverResponse && (

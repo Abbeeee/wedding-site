@@ -9,31 +9,28 @@ const startPage = await getStartPage();
 
 {
 	startPage?.heroSlider && (
-		<>
-			<Splide
-				options={{
-					rewind: true,
-					arrows: false,
-					pagination: false,
-					type: 'fade',
-					autoplay: true,
-					speed: 2000,
-					interval: 4000,
-					pauseOnHover: false,
-					pauseOnFocus: false
-				}}
-				aria-label="Bildspel med bilder på Antonia och Henrik"
-			>
-				{startPage?.heroSlider.images.map((image) => (
-					<SplideSlide>
-						<img
-							class="h-[420px] object-cover"
-							src={urlFor(image).width(1024).height(420).url()}
-							alt={(image.alt as string) || ''}
-						/>
-					</SplideSlide>
-				))}
-			</Splide>
-		</>
+		<Splide
+			options={{
+				rewind: true,
+				arrows: false,
+				pagination: false,
+				type: 'fade',
+				autoplay: true,
+				speed: 2000,
+				interval: 4000,
+				pauseOnHover: false,
+				pauseOnFocus: false
+			}}
+		>
+			{startPage?.heroSlider.images.map((image) => (
+				<SplideSlide>
+					<img
+						class="min-h-[380px] object-cover"
+						src={urlFor(image).width(1024).height(420).url()}
+						alt={(image.alt as string) || ''}
+					/>
+				</SplideSlide>
+			))}
+		</Splide>
 	)
 }

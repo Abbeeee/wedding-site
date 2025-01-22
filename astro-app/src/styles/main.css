@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
 	--space-0: 0;
 	--space-1: 4px;
@@ -51,6 +55,45 @@
 	--max-width-1: 768px;
 }
 
+@layer base {
+	a {
+		@apply text-accent hover:text-accent;
+	}
+}
+
+a {
+	position: relative;
+	display: inline-block;
+	text-decoration: underline;
+	text-underline-offset: 0.05em;
+	transition: text-underline-offset 200ms ease-in-out;
+
+	&:hover {
+		text-underline-offset: 0.25em;
+	}
+
+	/* &::before {
+		content: '';
+		position: absolute;
+		bottom: 0.125em;
+		left: 0;
+		height: 1px;
+		width: 100%;
+		background-color: currentColor;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 200ms ease-in-out;
+	}
+
+	&:hover::before {
+		transform: scaleX(1);
+	} */
+}
+
+.button {
+	@apply flex w-fit min-w-[150px] items-center justify-center rounded-md bg-primary px-4 py-2 text-white no-underline transition-colors hover:bg-accent hover:text-white disabled:cursor-not-allowed disabled:bg-gray-600;
+}
+
 html {
 	background-color: var(--white);
 	font-family: var(--font-family-sans), var(--font-family-serif), sans-serif;
@@ -73,14 +116,14 @@ h6 {
 }
 
 h1 {
-	font-size: var(--font-size-5);
+	font-size: var(--font-size-8);
 }
 h2 {
-	font-size: var(--font-size-4);
+	font-size: var(--font-size-6);
 }
 
 h3 {
-	font-size: var(--font-size-3);
+	font-size: var(--font-size-4);
 }
 h4 {
 	font-size: var(--font-size-2);
@@ -90,10 +133,26 @@ h5 {
 }
 
 .block-content {
+	p {
+		margin-bottom: 0.5em;
+		text-wrap: pretty;
+	}
 	& ul,
 	ol {
+		width: fit-content;
 		list-style: unset;
 		margin: 1em 0;
 		padding: 0 0 0 1em;
 	}
+}
+
+.text-center:has(.block-content) {
+	& ul,
+	ol {
+		margin: 1em auto;
+	}
+}
+
+section {
+	@apply mb-16 md:mb-28;
 }

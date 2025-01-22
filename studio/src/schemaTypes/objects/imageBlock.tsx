@@ -6,6 +6,12 @@ export default defineType({
   title: 'Imageblock',
   fields: [
     {
+      name: 'heading',
+      title: 'Rubrik',
+      type: 'string',
+      description: 'Heading for the block',
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',
