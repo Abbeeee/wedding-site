@@ -36,7 +36,7 @@ const { block } = Astro.props;
 								<div class="block-content">
 									{item.information && <SanityPortableText content={item?.information} client:only="react" />}
 								</div>
-								{item.button && (
+								{item.button?.text && item.button.link && (
 									<a
 										href={item.button.link}
 										class={`button mt-4 ${block.centeredText ? 'mx-auto' : ''}`}
