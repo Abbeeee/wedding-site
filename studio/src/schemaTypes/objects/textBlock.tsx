@@ -9,7 +9,7 @@ export default defineType({
       name: 'text',
       title: 'Text',
       type: 'blockContent',
-      description: 'Valfri text som går att formatera',
+      description: 'Valfri formaterbar text',
     },
   ],
   preview: {

@@ -19,6 +19,8 @@ export default {
 			  },
 			maxWidth: {
 				'container': 'calc(min(100% - 32px, 1024px))',
+				'container-roomy': 'calc(min(100% - 64px, 1024px))',
+				'container-full': 'calc(100% - 64px)',
 			  },
 		},
 		screens: {

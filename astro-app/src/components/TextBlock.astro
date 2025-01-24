@@ -6,8 +6,10 @@ const { block } = Astro.props;
 
 {
 	block?.text && (
-		<section class="block-content mx-auto max-w-[60ch] text-pretty">
-			<SanityPortableText content={block.text} client:only="react" />
+		<section class="mx-auto max-w-container">
+			<div class="block-content mx-auto max-w-[60ch] text-pretty">
+				<SanityPortableText content={block.text} client:only="react" />
+			</div>
 		</section>
 	)
 }

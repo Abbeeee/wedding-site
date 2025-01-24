@@ -5,6 +5,9 @@ type ButtonOrAnchorProps = {
 	href?: string;
 	target?: string;
 	rel?: string;
+	class?: string;
+	className?: string;
+	iconEnd?: JSX.Element | string;
 } & ButtonProps;
 
 interface ButtonProps {
@@ -12,13 +15,11 @@ interface ButtonProps {
 	children: React.ReactNode;
 	type?: 'button' | 'submit' | 'reset';
 	disabled?: boolean;
-	className?: string;
 	isSubmitting?: boolean;
 	isSubmitSuccessful?: boolean;
 	variant?: 'primary' | 'accent' | 'outline';
 	size?: 'sm' | 'md' | 'lg';
-	iconStart?: React.ReactNode;
-	iconEnd?: JSX.Element | string;
+	iconStart?: JSX.Element | string;
 	fullWidth?: boolean;
 }
 
@@ -31,7 +32,8 @@ const Button: React.FC<ButtonOrAnchorProps> = ({
 	children,
 	type = 'button',
 	disabled = false,
-	className = '',
+	class: className1 = '',
+	className: className2 = '',
 	isSubmitting = false,
 	isSubmitSuccessful = false,
 	variant = 'primary',
@@ -40,13 +42,23 @@ const Button: React.FC<ButtonOrAnchorProps> = ({
 	iconEnd,
 	fullWidth = false
 }) => {
-	const baseStyles = 'min-w-[125px] font-medium transition-all duration-200 flex items-center justify-center ';
+	const combinedClassName = `${className1} ${className2}`.trim();
+
+	const renderIcon = (icon?: JSX.Element | string) => {
+		if (typeof icon === 'string') {
+			return <span dangerouslySetInnerHTML={{ __html: icon }} />;
+		}
+		return icon;
+	};
+
+	const baseStyles = 'btn min-w-[125px] font-normal transition-all duration-200 flex items-center justify-center';
 
 	const variantStyles = {
-		primary: 'bg-primary text-white enabled:hover:bg-accent focus:ring-2 focus:ring-primary-500',
-		accent: 'bg-accent text-white enabled:hover:bg-primary focus:ring-2 focus:ring-gray-500',
+		primary:
+			'bg-primary text-white hover:bg-accent focus:ring-2 focus:ring-primary [&:not([disabled])]:hover:bg-accent',
+		accent: 'bg-accent text-white hover:bg-primary focus:ring-2 focus:ring-accent [&:not([disabled])]:hover:bg-primary',
 		outline:
-			'border-2 border-primary text-primary enabled:hover:bg-primary enabled:hover:text-white focus:ring-2 focus:ring-primary-500'
+			'border-2 border-primary text-primary [&:not([disabled])]:hover:bg-primary [&:not([disabled])]:hover:text-white [&:not([disabled])]:focus:text-white [&:not([disabled])]:focus:bg-primary'
 	};
 
 	const sizeStyles = {
@@ -61,12 +73,12 @@ const Button: React.FC<ButtonOrAnchorProps> = ({
     ${sizeStyles[size]}
     ${fullWidth ? 'w-full' : ''}
     ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
-    ${className}
+    ${combinedClassName}
   `.trim();
 
 	const content = (
 		<div className="flex items-center justify-center gap-2">
-			{iconStart && <span className="inline-flex">{iconStart}</span>}
+			{iconStart && <span className="inline-flex">{renderIcon(iconStart)}</span>}
 			{isSubmitting ? (
 				<div className="flex items-center justify-center gap-2">
 					{children}
@@ -79,13 +91,22 @@ const Button: React.FC<ButtonOrAnchorProps> = ({
 				<>
 					Skickat!{' '}
 					<svg className="size-5" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-						<path fill="currentColor" d="m9 19.414l-6.707-6.707l1.414-1.414L9 16.586L20.293 5.293l1.414 1.414z" />
+						<path
+							fill="none"
+							stroke="currentColor"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth="2"
+							d="M20 6L9 17l-5-5"
+						/>
 					</svg>
 				</>
 			) : (
-				children
+				<>
+					{children}
+					{iconEnd && <span className="inline-flex">{renderIcon(iconEnd)}</span>}
+				</>
 			)}
-			{iconEnd && <span className="inline-flex">{iconEnd}</span>}
 		</div>
 	);
 

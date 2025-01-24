@@ -38,6 +38,11 @@ export default defineType({
           type: 'imageBlock',
         },
         {
+          name: 'textImageBlock',
+          title: 'TextImageBlock',
+          type: 'textImageBlock',
+        },
+        {
           name: 'centerTextBlock',
           title: 'CenterTextBlock',
           type: 'centerTextBlock',

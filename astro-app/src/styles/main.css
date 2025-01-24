@@ -55,13 +55,8 @@
 	--max-width-1: 768px;
 }
 
-@layer base {
-	a {
-		@apply text-accent hover:text-accent;
-	}
-}
-
-a {
+a:not(.btn) {
+	@apply text-accent hover:text-accent;
 	position: relative;
 	display: inline-block;
 	text-decoration: underline;
@@ -71,23 +66,6 @@ a {
 	&:hover {
 		text-underline-offset: 0.25em;
 	}
-
-	/* &::before {
-		content: '';
-		position: absolute;
-		bottom: 0.125em;
-		left: 0;
-		height: 1px;
-		width: 100%;
-		background-color: currentColor;
-		transform: scaleX(0);
-		transform-origin: left;
-		transition: transform 200ms ease-in-out;
-	}
-
-	&:hover::before {
-		transform: scaleX(1);
-	} */
 }
 
 html {
@@ -150,5 +128,5 @@ h5 {
 }
 
 section {
-	@apply mb-16 md:mb-28;
+	@apply mb-20 md:mb-32;
 }

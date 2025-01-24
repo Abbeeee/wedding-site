@@ -15,7 +15,6 @@ export default defineType({
       name: 'image',
       title: 'Image',
       type: 'image',
-      description: 'Enkel 1st bild',
       options: {
         hotspot: true,
       },

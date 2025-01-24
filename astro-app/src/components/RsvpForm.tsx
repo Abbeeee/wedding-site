@@ -58,8 +58,7 @@ const RsvpForm: React.FC = () => {
 
 				<Button
 					type="submit"
-					variant="accent"
-					size="md" // Add size
+					variant="outline"
 					isSubmitting={isSubmitting}
 					isSubmitSuccessful={isSubmitSuccessful}
 					disabled={isSubmitSuccessful}

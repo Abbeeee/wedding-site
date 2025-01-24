@@ -43,7 +43,7 @@ export interface StartPage {
 		description: PortableTextBlock[];
 		icon: ImageAsset & { alt?: string };
 	}[];
-	blocks?: (TextBlock | ImageBlock | CenterTextBlock | PuffBlock)[];
+	blocks?: (TextBlock | ImageBlock | CenterTextBlock | PuffBlock | TextImageBlock)[];
 	callToAction?: {
 		text: string;
 		link: string;
@@ -59,6 +59,14 @@ export interface ImageBlock {
 	_type: 'imageBlock';
 	heading?: string;
 	image?: ImageAsset;
+}
+
+export interface TextImageBlock {
+	_type: 'textImageBlock';
+	image?: ImageAsset;
+	heading?: string;
+	text?: PortableTextBlock[];
+	reverse?: boolean;
 }
 
 export interface CenterTextBlock {
