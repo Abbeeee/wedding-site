@@ -15,10 +15,10 @@ interface ButtonProps {
 	className?: string;
 	isSubmitting?: boolean;
 	isSubmitSuccessful?: boolean;
-	variant?: 'primary' | 'secondary' | 'outline';
+	variant?: 'primary' | 'accent' | 'outline';
 	size?: 'sm' | 'md' | 'lg';
 	iconStart?: React.ReactNode;
-	iconEnd?: React.ReactNode;
+	iconEnd?: JSX.Element | string;
 	fullWidth?: boolean;
 }
 
@@ -40,12 +40,13 @@ const Button: React.FC<ButtonOrAnchorProps> = ({
 	iconEnd,
 	fullWidth = false
 }) => {
-	const baseStyles = 'rounded-md font-medium transition-all duration-200 flex items-center justify-center';
+	const baseStyles = 'min-w-[125px] font-medium transition-all duration-200 flex items-center justify-center ';
 
 	const variantStyles = {
-		primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-2 focus:ring-primary-500',
-		secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-2 focus:ring-gray-500',
-		outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-2 focus:ring-primary-500'
+		primary: 'bg-primary text-white enabled:hover:bg-accent focus:ring-2 focus:ring-primary-500',
+		accent: 'bg-accent text-white enabled:hover:bg-primary focus:ring-2 focus:ring-gray-500',
+		outline:
+			'border-2 border-primary text-primary enabled:hover:bg-primary enabled:hover:text-white focus:ring-2 focus:ring-primary-500'
 	};
 
 	const sizeStyles = {
@@ -75,7 +76,12 @@ const Button: React.FC<ButtonOrAnchorProps> = ({
 					/>
 				</div>
 			) : isSubmitSuccessful ? (
-				'Skickat!'
+				<>
+					Skickat!{' '}
+					<svg className="size-5" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path fill="currentColor" d="m9 19.414l-6.707-6.707l1.414-1.414L9 16.586L20.293 5.293l1.414 1.414z" />
+					</svg>
+				</>
 			) : (
 				children
 			)}

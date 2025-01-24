@@ -29,7 +29,7 @@ export default function InputField({
 				{required && <span className="text-red-800">*</span>}
 			</label>
 			<input
-				className="rounded-lg border border-gray-300 px-4 py-2"
+				className="border border-gray-300 px-4 py-2"
 				type={type || 'text'}
 				{...register(name, { required: required, pattern: pattern })}
 				{...rest}

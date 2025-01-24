@@ -2,6 +2,7 @@
 import { urlFor } from '../utils/image';
 import { PuffBlockItem } from '../utils/sanity';
 import SanityPortableText from './SanityPortableText';
+import Button from './Button';
 
 const { block } = Astro.props;
 ---
@@ -15,14 +16,14 @@ const { block } = Astro.props;
 	{
 		block.items && (
 			<div
-				class={`xs:gap-12 grid gap-8 ${
+				class={`grid gap-8 xs:gap-12 ${
 					block.items.length % 2 === 1 ? '[&>div:last-child]:col-span-full' : ''
-				} ${block.centeredText ? 'xs:gap-12 xs:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-8' : 'xs:gap-10 xs:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4'}`}
+				} ${block.centeredText ? 'gap-8 xs:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] xs:gap-12' : 'gap-4 xs:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] xs:gap-10'}`}
 			>
 				{block.items.map((item: PuffBlockItem) => {
 					return (
 						<div
-							class={`mx-auto w-full max-w-[420px] overflow-hidden ${block.centeredText ? 'text-center' : 'border-accent-200 rounded-lg border-2 border-solid'}`}
+							class={`mx-auto w-full max-w-[420px] overflow-hidden ${block.centeredText ? 'text-center' : 'rounded-lg border-2 border-solid border-accent-200'}`}
 						>
 							{item.image && (
 								<img
@@ -31,7 +32,7 @@ const { block } = Astro.props;
 									alt=""
 								/>
 							)}
-							<div class={`${block.centeredText ? '' : 'xs:p-6 p-4'}`}>
+							<div class={`${block.centeredText ? '' : 'p-4 xs:p-6'}`}>
 								{item.heading && <h3 class="mt-0 text-balance text-2xl font-bold sm:text-3xl">{item.heading}</h3>}
 								<div class="block-content">
 									{item.information && <SanityPortableText content={item?.information} client:only="react" />}
