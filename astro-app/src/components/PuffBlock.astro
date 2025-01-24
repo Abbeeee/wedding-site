@@ -8,7 +8,7 @@ const { block } = Astro.props;
 ---
 
 <section class="">
-	<div class="mx-auto w-full bg-background xs:max-w-container sm:max-w-container md:max-w-container">
+	<div class="mx-auto w-full max-w-container bg-background">
 		<div class={`mx-auto ${block.centeredText ? 'max-w-2xl' : 'max-w-4xl'}`}>
 			{
 				block.heading && (
@@ -28,7 +28,7 @@ const { block } = Astro.props;
 									{item.image && (
 										<img
 											class={`block object-cover ${block.centeredText ? 'mx-auto mb-6 size-[125px] rounded-full sm:size-[150px]' : 'h-[200px] w-full'}`}
-											src={urlFor(item.image).url()}
+											src={urlFor(item.image).width(520).height(300).url()}
 											alt=""
 										/>
 									)}
