@@ -2,8 +2,8 @@
 const { block } = Astro.props;
 ---
 
-<section class="mx-auto max-w-2xl">
-	<div class="text-center">
+<section class="mx-auto max-w-container">
+	<div class="mx-auto max-w-2xl text-center">
 		{block.heading && <h2 class="mx-auto mt-0 text-balance text-4xl md:text-5xl">{block.heading}</h2>}
 		{block.text && <p class="block-content mx-auto max-w-[60ch] text-pretty text-xl md:text-2xl">{block.text}</p>}
 	</div>
