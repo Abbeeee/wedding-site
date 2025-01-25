@@ -44,6 +44,7 @@ const RsvpForm: React.FC = () => {
 	return (
 		<section className="mx-auto max-w-container">
 			<section className="mx-auto max-w-lg">
+				<h2>Häng med!</h2>
 				<form className="" onSubmit={handleSubmit(onSubmit)} noValidate>
 					<InputField
 						name="Email"
@@ -52,9 +53,8 @@ const RsvpForm: React.FC = () => {
 						required="Email is required"
 						pattern={{ value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email address' }}
 					/>
-					<InputField name="Name" label="Name" type="text" required="Name is required" />
-					<InputField name="Allergies" label="Allergies" type="text" />
-
+					<InputField name="Name" label="Namn" type="text" required="Name is required" />
+					<InputField name="Allergies" label="Matpreferencer" type="text" />
 					<Button
 						type="submit"
 						variant="outline"
