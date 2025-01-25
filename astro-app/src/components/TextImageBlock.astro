@@ -10,7 +10,7 @@ const { block } = Astro.props;
 		<section class="mx-auto grid gap-8 xs:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] xs:px-10 sm:gap-4">
 			{block.image && (
 				<img
-					class={`${block.reverse ? 'order-1' : ''} mx-auto w-2/3 object-cover xs:w-4/5 sm:w-full sm:max-w-[500px]`}
+					class={`${block.reverse ? 'sm:order-1' : ''} mx-auto w-2/3 object-cover xs:w-4/5 sm:w-full sm:max-w-[500px]`}
 					src={urlFor(block.image).width(400).height(500).url()}
 					alt=""
 				/>
