@@ -7,17 +7,17 @@ const { block } = Astro.props;
 
 {
 	block?.text && (
-		<section class="mx-auto grid gap-8 xs:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] xs:px-10 sm:gap-4">
+		<section class="mx-auto grid max-w-container gap-4 xs:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] sm:gap-16">
 			{block.image && (
 				<img
-					class={`${block.reverse ? 'sm:order-1' : ''} mx-auto w-2/3 object-cover xs:w-4/5 sm:w-full sm:max-w-[500px]`}
+					class={`${block.reverse ? 'sm:order-1' : ''} mx-auto h-full w-2/3 object-cover sm:w-full`}
 					src={urlFor(block.image).width(400).height(500).url()}
 					alt=""
 				/>
 			)}
-			<div class="block-content flex max-w-[60ch] items-center justify-center text-pretty text-center">
-				<div>
-					{block.heading && <h2 class="mt-0 sm:text-3xl md:text-5xl">{block.heading}</h2>}
+			<div class="l flex items-center justify-center">
+				<div class="block-content w-3/4 text-pretty text-center sm:w-full">
+					{block.heading && <h2 class="mt-0 text-balance sm:text-3xl md:text-5xl">{block.heading}</h2>}
 					<SanityPortableText content={block.text} client:only="react" />
 				</div>
 			</div>
