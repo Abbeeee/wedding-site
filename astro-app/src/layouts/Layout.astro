@@ -2,6 +2,7 @@
 // https://docs.astro.build/en/guides/view-transitions/
 import { ViewTransitions } from 'astro:transitions';
 import '../styles/main.css';
+import Navigation from '../components/Navigation';
 
 interface Props {
 	title: string;
@@ -30,11 +31,7 @@ const { title } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body class="flex h-full min-h-screen flex-col bg-background text-primary">
-		<header class="fixed z-10 w-full bg-background py-4 max-md:shadow-sm md:relative">
-			<div class="mx-auto flex max-w-container gap-4">
-				<a class="header__title" href="/">A&H</a>
-			</div>
-		</header>
+		<Navigation client:only="react" />
 
 		<main class="mx-auto mt-[calc(72px+1rem)] w-full md:mt-0">
 			<slot />
