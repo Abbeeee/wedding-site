@@ -57,10 +57,10 @@ const Navigation: FC<Props> = ({}) => {
 	return (
 		<>
 			<header
-				className={`fixed z-20 w-full transform bg-background py-2 transition-transform duration-300 max-md:shadow-sm md:py-4 ${!isVisible ? '-translate-y-full' : 'translate-y-0'}`}
+				className={`fixed z-20 w-full transform bg-background py-2 shadow-sm transition-transform duration-300 md:py-4 ${!isVisible ? '-translate-y-full' : 'translate-y-0'}`}
 			>
 				<div className="mx-auto flex max-w-container items-center justify-between gap-4">
-					<a className="header__title" href="/">
+					<a className="header__title min-w-[80px]" href="/">
 						A&H
 					</a>
 					<nav className="hidden h-full items-center gap-4 md:flex">

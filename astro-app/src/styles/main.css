@@ -206,15 +206,15 @@ h5 {
 }
 
 a:not(.btn) {
-	@apply text-accent hover:text-accent;
+	/* @apply text-accent hover:text-accent; */
 	position: relative;
 	display: inline-block;
 	text-decoration: underline;
-	text-underline-offset: 0.05em;
+	text-underline-offset: 0.1em;
 	transition: text-underline-offset 200ms ease-in-out;
 
 	&:hover {
-		text-underline-offset: 0.25em;
+		text-underline-offset: 0.2em;
 	}
 }
 

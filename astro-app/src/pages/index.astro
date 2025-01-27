@@ -17,9 +17,11 @@ const startPage = await getStartPage();
 	<section class="mx-auto mb-16 mt-4 max-w-container text-center md:mt-32">
 		<div class="mb-6">
 			<p class="mb-4 text-xl md:text-2xl">{startPage?.subtitle}</p>
-
-			<h1 class="mb-0 mt-0 text-balance text-5xl font-bold md:mb-6 md:text-6xl" style="word-wrap: break-word;">
-				{startPage?.title?.replaceAll(' |&', '\u00A0&')}
+			<h1
+				class="mx-auto mb-0 mt-0 w-fit text-balance text-5xl font-bold md:mb-8 md:text-6xl"
+				style="word-wrap: break-word;"
+			>
+				{startPage?.title}
 			</h1>
 		</div>
 		<Slider />
