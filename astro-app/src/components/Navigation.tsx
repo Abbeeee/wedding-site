@@ -26,7 +26,7 @@ const Navigation: FC<Props> = ({}) => {
 	const [lastScrollY, setLastScrollY] = useState(0);
 
 	useEffect(() => {
-		const mediaQuery = window.matchMedia('(min-width: 768px)');
+		const mediaQuery = window.matchMedia('(min-width: 1px)');
 
 		const handleScroll = () => {
 			if (mediaQuery.matches) {
