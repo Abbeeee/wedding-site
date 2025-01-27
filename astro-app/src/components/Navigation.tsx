@@ -57,7 +57,7 @@ const Navigation: FC<Props> = ({}) => {
 	return (
 		<>
 			<header
-				className={`fixed z-20 w-full transform bg-background py-4 transition-transform duration-300 max-md:shadow-sm ${!isVisible ? '-translate-y-full' : 'translate-y-0'}`}
+				className={`fixed z-20 w-full transform bg-background py-2 transition-transform duration-300 max-md:shadow-sm md:py-4 ${!isVisible ? '-translate-y-full' : 'translate-y-0'}`}
 			>
 				<div className="mx-auto flex max-w-container items-center justify-between gap-4">
 					<a className="header__title" href="/">
@@ -74,12 +74,13 @@ const Navigation: FC<Props> = ({}) => {
 							Länk #3
 						</a>
 					</nav>
-					<Button className="ml-auto min-w-20 md:ml-0" href="#" size="sm" variant="outline" as="a">
+					<Button className="ml-auto min-w-[80px] md:ml-0" href="#" size="sm" variant="outline" as="a">
 						OSA
 					</Button>
 					<button
 						className={`menu-icon relative block size-10 cursor-pointer md:hidden ${isMenuActive ? 'active' : ''}`}
 						onClick={toggleMenu}
+						aria-label="Toggle menu"
 					>
 						<div className="absolute inset-0 m-auto h-[12px] w-[22px]">
 							<span className={`${barClasses} top-0`}></span>

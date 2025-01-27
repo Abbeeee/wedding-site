@@ -51,7 +51,8 @@ const Button: React.FC<ButtonOrAnchorProps> = ({
 		return icon;
 	};
 
-	const baseStyles = 'btn min-w-[125px] font-normal transition-all duration-200 flex items-center justify-center';
+	const baseStyles =
+		'btn min-w-[125px] font-normal transition-all duration-200 flex items-center justify-center font-mrs-eaves leading-none';
 
 	const variantStyles = {
 		primary:

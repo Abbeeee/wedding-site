@@ -15,9 +15,12 @@ const startPage = await getStartPage();
 <Layout title="Antonia & Henrik">
 	<!-- HERO -->
 	<section class="mx-auto mb-16 mt-4 max-w-container text-center md:mt-32">
-		<div class="mb-8">
-			<h1 class="mb-2 mt-0 text-5xl font-bold md:text-6xl">{startPage?.title}</h1>
-			<p class="text-2xl font-bold">{startPage?.subtitle}</p>
+		<div class="mb-6">
+			<p class="mb-4 text-xl md:text-2xl">{startPage?.subtitle}</p>
+
+			<h1 class="mb-0 mt-0 text-balance text-5xl font-bold md:mb-6 md:text-6xl" style="word-wrap: break-word;">
+				{startPage?.title?.replaceAll(' |&', '\u00A0&')}
+			</h1>
 		</div>
 		<Slider />
 	</section>
