@@ -2,6 +2,113 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://p.typekit.net/p.css?s=1&k=flc2gmz&ht=tk&f=28483.28484.28485.28486.37781.28479.28480&a=201500114&app=typekit&e=css');
+
+@font-face {
+	font-family: 'mrs-eaves';
+	src:
+		url('https://use.typekit.net/af/feb931/00000000000000007735b2fd/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3')
+			format('woff2'),
+		url('https://use.typekit.net/af/feb931/00000000000000007735b2fd/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3')
+			format('woff'),
+		url('https://use.typekit.net/af/feb931/00000000000000007735b2fd/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3')
+			format('opentype');
+	font-display: auto;
+	font-style: italic;
+	font-weight: 700;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'mrs-eaves';
+	src:
+		url('https://use.typekit.net/af/23ea79/00000000000000007735b2ff/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('woff2'),
+		url('https://use.typekit.net/af/23ea79/00000000000000007735b2ff/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('woff'),
+		url('https://use.typekit.net/af/23ea79/00000000000000007735b2ff/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('opentype');
+	font-display: auto;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'mrs-eaves';
+	src:
+		url('https://use.typekit.net/af/962d4f/00000000000000007735b300/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3')
+			format('woff2'),
+		url('https://use.typekit.net/af/962d4f/00000000000000007735b300/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3')
+			format('woff'),
+		url('https://use.typekit.net/af/962d4f/00000000000000007735b300/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3')
+			format('opentype');
+	font-display: auto;
+	font-style: normal;
+	font-weight: 700;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'mrs-eaves';
+	src:
+		url('https://use.typekit.net/af/d2a097/00000000000000007735b301/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3')
+			format('woff2'),
+		url('https://use.typekit.net/af/d2a097/00000000000000007735b301/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3')
+			format('woff'),
+		url('https://use.typekit.net/af/d2a097/00000000000000007735b301/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3')
+			format('opentype');
+	font-display: auto;
+	font-style: italic;
+	font-weight: 400;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'geographica-script';
+	src:
+		url('https://use.typekit.net/af/2e8596/000000000000000077584092/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('woff2'),
+		url('https://use.typekit.net/af/2e8596/000000000000000077584092/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('woff'),
+		url('https://use.typekit.net/af/2e8596/000000000000000077584092/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('opentype');
+	font-display: auto;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'mrs-eaves-roman-all-small-ca';
+	src:
+		url('https://use.typekit.net/af/347c50/00000000000000007735b2fa/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('woff2'),
+		url('https://use.typekit.net/af/347c50/00000000000000007735b2fa/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('woff'),
+		url('https://use.typekit.net/af/347c50/00000000000000007735b2fa/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('opentype');
+	font-display: auto;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'mrs-eaves-roman-lining';
+	src:
+		url('https://use.typekit.net/af/7c9064/00000000000000007735b2fb/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('woff2'),
+		url('https://use.typekit.net/af/7c9064/00000000000000007735b2fb/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('woff'),
+		url('https://use.typekit.net/af/7c9064/00000000000000007735b2fb/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
+			format('opentype');
+	font-display: auto;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+}
+
 :root {
 	--space-0: 0;
 	--space-1: 4px;
@@ -17,6 +124,10 @@
 	--font-family-sans: Inter;
 	--font-family-serif: PT Serif;
 	--font-family-mono: IMB Plex Mono;
+	--lg-heading-font-family: 'geographica-script';
+	--sm-heading-font-family: 'mrs-eaves';
+
+	--body-family: 'mrs-eaves-roman-lining';
 
 	--font-size-0: 12px;
 	--font-size-1: 14px;
@@ -55,23 +166,11 @@
 	--max-width-1: 768px;
 }
 
-a:not(.btn) {
-	@apply text-accent hover:text-accent;
-	position: relative;
-	display: inline-block;
-	text-decoration: underline;
-	text-underline-offset: 0.05em;
-	transition: text-underline-offset 200ms ease-in-out;
-
-	&:hover {
-		text-underline-offset: 0.25em;
-	}
-}
-
 html {
 	background-color: var(--white);
-	font-family: var(--font-family-sans), var(--font-family-serif), sans-serif;
+	font-family: var(--body-family), var(--font-family-sans), var(--font-family-serif), sans-serif;
 	text-size-adjust: 100%;
+	font-size: 1.125rem;
 }
 
 body {
@@ -84,13 +183,14 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: var(--font-family-sans);
+	font-family: var(--sm-heading-font-family);
 	margin: 1em 0 0.5em;
 	font-weight: bold;
 }
 
 h1 {
 	font-size: var(--font-size-8);
+	font-family: var(--lg-heading-font-family);
 }
 h2 {
 	font-size: var(--font-size-6);
@@ -104,6 +204,19 @@ h4 {
 }
 h5 {
 	font-size: var(--font-size-1);
+}
+
+a:not(.btn) {
+	@apply text-accent hover:text-accent;
+	position: relative;
+	display: inline-block;
+	text-decoration: underline;
+	text-underline-offset: 0.05em;
+	transition: text-underline-offset 200ms ease-in-out;
+
+	&:hover {
+		text-underline-offset: 0.25em;
+	}
 }
 
 .block-content {

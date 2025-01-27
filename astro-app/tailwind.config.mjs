@@ -16,12 +16,38 @@ export default {
 				"accent-200": "#e4e3df",
 				"background": "#F5F1EB",
 
-			  },
+			},
 			maxWidth: {
 				'container': 'calc(min(100% - 32px, 1024px))',
 				'container-roomy': 'calc(min(100% - 64px, 1024px))',
 				'container-full': 'calc(100% - 64px)',
-			  },
+			},
+			fontFamily: {
+				'mrs-eaves': [
+					'"mrs-eaves"',
+					'serif',
+				],
+				'mrs-eaves-small-caps': [
+					'"mrs-eaves-roman-small-caps"',
+					'serif',
+				],
+				'mrs-eaves-all-small': [
+					'"mrs-eaves-roman-all-small-ca"',
+					'serif',
+				],
+				'mrs-eaves-lining': [
+					'"mrs-eaves-roman-lining"',
+					'serif',
+				],
+				'geographica': [
+					'"geographica"',
+					'sans-serif',
+				],
+				'geographica-script': [
+					'"geographica-script"',
+					'sans-serif',
+				],
+			},
 		},
 		screens: {
 			'xs': '480px',
