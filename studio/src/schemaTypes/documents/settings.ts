@@ -11,11 +11,6 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'favIcon',
-      title: 'Fav icon',
-      type: 'image',
-    }),
-    defineField({
       name: 'navLinks',
       title: 'Nav Links',
       type: 'array',

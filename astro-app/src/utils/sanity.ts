@@ -35,7 +35,6 @@ export interface Settings {
 	_type: 'settings';
 	_createdAt: string;
 	pageTitle?: string;
-	heroImage?: ImageAsset;
 	navLinks?: {
 		text: string;
 		link: string;
