@@ -1,8 +1,9 @@
 ---
 const { block } = Astro.props;
+const blockId = block._key;
 ---
 
-<section class="mx-auto max-w-container">
+<section id={blockId} class="mx-auto max-w-container">
 	<div class="mx-auto max-w-2xl text-center">
 		{block.heading && <h2 class="mx-auto mt-0 text-balance text-4xl md:text-5xl">{block.heading}</h2>}
 		{block.text && <p class="block-content mx-auto max-w-[60ch] text-pretty text-xl md:text-2xl">{block.text}</p>}

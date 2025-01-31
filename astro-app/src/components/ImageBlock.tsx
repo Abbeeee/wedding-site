@@ -8,9 +8,10 @@ type Props = {
 
 const ImageBlock = (props: Props) => {
 	const image = props.block.image;
+	const blockId = props.block._key;
 
 	return (
-		<section className="imageblock mx-auto max-w-container">
+		<section id={blockId} className="imageblock mx-auto max-w-container">
 			{props.block.heading && (
 				<h2 className="mx-auto mt-0 w-fit text-balance text-4xl md:text-5xl">{props.block.heading}</h2>
 			)}

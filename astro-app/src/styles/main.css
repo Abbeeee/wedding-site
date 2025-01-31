@@ -170,6 +170,7 @@ html {
 	font-family: var(--body-family), var(--font-family-sans), var(--font-family-serif), sans-serif;
 	text-size-adjust: 100%;
 	font-size: 1.125rem;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -216,6 +217,10 @@ a:not(.btn) {
 	&:hover {
 		text-underline-offset: 0.2em;
 	}
+}
+
+section {
+	scroll-margin-top: 80px;
 }
 
 .block-content {

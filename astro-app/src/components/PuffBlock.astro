@@ -5,9 +5,10 @@ import SanityPortableText from './SanityPortableText';
 import Button from './Button';
 
 const { block } = Astro.props;
+const blockId = block._key;
 ---
 
-<section class="mx-auto w-full max-w-container">
+<section id={blockId} class="mx-auto w-full max-w-container">
 	<div class={`mx-auto ${block.centeredText ? 'max-w-2xl' : 'max-w-4xl'}`}>
 		{
 			block.heading && (

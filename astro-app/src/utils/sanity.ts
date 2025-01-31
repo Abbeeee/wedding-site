@@ -17,6 +17,10 @@ export async function getStartPage(): Promise<StartPage> {
 	return await sanityClient.fetch(groq`*[_type == "startPage"][0]`);
 }
 
+export async function getSettings(): Promise<Settings> {
+	return await sanityClient.fetch(groq`*[_type == "settings"][0]`);
+}
+
 export interface Post {
 	_type: 'post';
 	_createdAt: string;
@@ -25,6 +29,21 @@ export interface Post {
 	excerpt?: string;
 	mainImage?: ImageAsset & { alt?: string };
 	body: PortableTextBlock[];
+}
+
+export interface Settings {
+	_type: 'settings';
+	_createdAt: string;
+	pageTitle?: string;
+	heroImage?: ImageAsset;
+	navLinks?: {
+		text: string;
+		link: string;
+	}[];
+	callToAction?: {
+		text: string;
+		link: string;
+	};
 }
 
 export interface StartPage {
@@ -59,6 +78,7 @@ export interface ImageBlock {
 	_type: 'imageBlock';
 	heading?: string;
 	image?: ImageAsset;
+	_key?: string;
 }
 
 export interface TextImageBlock {
@@ -80,6 +100,7 @@ export interface PuffBlock {
 	heading?: string;
 	items?: Array<PuffBlockItem>;
 	centeredText?: boolean;
+	_key?: string;
 }
 
 export interface PuffBlockItem {

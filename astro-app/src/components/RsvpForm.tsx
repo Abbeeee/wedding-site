@@ -42,7 +42,7 @@ const RsvpForm: React.FC = () => {
 	};
 
 	return (
-		<section className="mx-auto max-w-container">
+		<section id="rsvpForm" className="mx-auto max-w-container">
 			<section className="mx-auto max-w-lg">
 				<h2>Häng med!</h2>
 				<form className="" onSubmit={handleSubmit(onSubmit)} noValidate>
