@@ -6,16 +6,16 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      description: 'The main title of the page',
-    }),
-    defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
       description: 'A short subtitle or tagline for the page',
+    }),
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      description: 'The main title of the page',
     }),
     defineField({
       name: 'heroSlider',

@@ -77,6 +77,8 @@ export interface ImageBlock {
 	_type: 'imageBlock';
 	heading?: string;
 	image?: ImageAsset;
+	noCrop?: boolean;
+	maxHeight?: number;
 	_key?: string;
 }
 
@@ -86,6 +88,8 @@ export interface TextImageBlock {
 	heading?: string;
 	text?: PortableTextBlock[];
 	reverse?: boolean;
+	noCrop?: boolean;
+	maxHeight?: number;
 }
 
 export interface CenterTextBlock {

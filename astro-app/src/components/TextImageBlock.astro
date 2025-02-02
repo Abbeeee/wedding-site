@@ -3,6 +3,7 @@ import { urlFor } from '../utils/image';
 import SanityPortableText from './SanityPortableText';
 
 const { block } = Astro.props;
+const maxHeightValue = block.noCrop && block.maxHeight ? block.maxHeight : 200;
 const blockId = block._key;
 ---
 
@@ -10,16 +11,24 @@ const blockId = block._key;
 	block?.text && (
 		<section
 			id={blockId}
-			class="mx-auto grid max-w-container gap-4 xs:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] sm:gap-16"
+			class={`mx-auto max-w-container ${block.noCrop ? 'flex w-fit flex-row flex-wrap justify-center gap-4 sm:gap-8' : 'grid gap-4 xs:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] sm:gap-16'}`}
 		>
-			{block.image && (
+			{block.image && block.noCrop ? (
 				<img
-					class={`${block.reverse ? 'sm:order-1' : ''} mx-auto h-full w-2/3 object-cover sm:w-full`}
-					src={urlFor(block.image).width(400).height(500).url()}
+					class={`${block.reverse ? 'sm:order-1' : ''} mx-auto object-contain`}
+					src={urlFor(block.image).height(maxHeightValue).fit('min').auto('format').url()}
 					alt=""
 				/>
+			) : (
+				block.image && (
+					<img
+						class={`${block.reverse ? 'sm:order-1' : ''} mx-auto h-full w-2/3 object-cover sm:w-full`}
+						src={urlFor(block.image).width(400).height(500).auto('format').url()}
+						alt=""
+					/>
+				)
 			)}
-			<div class="l flex items-center justify-center">
+			<div class={`flex items-center justify-center ${block.noCrop ? 'max-w-80' : ''}`}>
 				<div class="block-content w-3/4 text-pretty text-center sm:w-full">
 					{block.heading && <h2 class="mt-0 text-balance sm:text-3xl md:text-5xl">{block.heading}</h2>}
 					<SanityPortableText content={block.text} client:only="react" />

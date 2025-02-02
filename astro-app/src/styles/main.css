@@ -220,6 +220,7 @@ a:not(.btn) {
 }
 
 section {
+	@apply mb-20 md:mb-32;
 	scroll-margin-top: 80px;
 }
 
@@ -242,10 +243,6 @@ section {
 	ol {
 		margin: 1em auto;
 	}
-}
-
-section {
-	@apply mb-20 md:mb-32;
 }
 
 .menu-icon {
