@@ -28,7 +28,7 @@ const blockId = block._key;
 					/>
 				)
 			)}
-			<div class={`flex items-center justify-center ${block.noCrop ? 'max-w-80' : ''}`}>
+			<div class={`flex items-center justify-center ${block.noCrop ? 'max-w-80 max-sm:min-w-80' : ''}`}>
 				<div class="block-content w-3/4 text-pretty text-center sm:w-full">
 					{block.heading && <h2 class="mt-0 text-balance sm:text-3xl md:text-5xl">{block.heading}</h2>}
 					<SanityPortableText content={block.text} client:only="react" />
