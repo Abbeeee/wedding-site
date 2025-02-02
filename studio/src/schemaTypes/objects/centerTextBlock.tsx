@@ -14,13 +14,13 @@ export default defineType({
     {
       name: 'text',
       title: 'Text',
-      type: 'text',
+      type: 'blockContent',
       description: 'Text som visas under eventuell rubrik ovanför',
     },
   ],
   preview: {
     select: {
-      text: 'text',
+      text: 'heading',
     },
     prepare(selection: any) {
       return {
