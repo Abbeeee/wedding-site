@@ -1,6 +1,11 @@
 import { PortableText } from '@portabletext/react';
+import type { PortableTextComponents, PortableTextProps } from '@portabletext/react';
 
-const portableTextComponents = {
+const portableTextComponents: PortableTextComponents = {
+	block: {
+		normal: ({ children }) => <p>{children}</p>,
+		smallCaps: ({ children }) => <p className="smallCaps">{children}</p>
+	},
 	marks: {
 		link: ({ value, children }: any) => {
 			const target = value?.href?.startsWith('http') ? '_blank' : undefined;
@@ -19,7 +24,7 @@ const portableTextComponents = {
 	}
 };
 
-const SanityPortableText = ({ content }: { content: any }) => {
+const SanityPortableText = ({ content }: { content: PortableTextProps['value'] }) => {
 	return <PortableText value={content} components={portableTextComponents} />;
 };
 

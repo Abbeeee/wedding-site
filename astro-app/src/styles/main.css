@@ -123,7 +123,7 @@
 	--font-family-sans: Inter;
 	--font-family-serif: PT Serif;
 	--font-family-mono: IMB Plex Mono;
-	--lg-heading-font-family: 'geographica-script';
+	--lg-heading-font-family: 'mrs-eaves-roman-all-small-ca';
 	--sm-heading-font-family: 'mrs-eaves';
 
 	--body-family: 'mrs-eaves-roman-lining';
@@ -191,6 +191,7 @@ h6 {
 h1 {
 	font-size: var(--font-size-8);
 	font-family: var(--lg-heading-font-family);
+	font-weight: 400;
 }
 h2 {
 	font-size: var(--font-size-6);
@@ -204,6 +205,14 @@ h4 {
 }
 h5 {
 	font-size: var(--font-size-1);
+}
+
+.smallCaps {
+	font-family: 'mrs-eaves-roman-all-small-ca', serif;
+	font-size: 1.15em;
+	margin-top: 1em;
+	font-weight: bold;
+	overflow-wrap: break-word;
 }
 
 a:not(.btn) {

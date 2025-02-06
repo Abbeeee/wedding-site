@@ -1,5 +1,9 @@
 import {defineType, defineArrayMember} from 'sanity'
 
+const SmallCapsStyle = (props: any) => (
+  <span style={{textTransform: 'uppercase', fontWeight: 'bold'}}>{props.children} </span>
+)
+
 /**
  * This is the schema definition for the rich text fields used for
  * for this blog studio. When you import it in schemas.js it can be
@@ -29,6 +33,11 @@ export default defineType({
         {title: 'H3', value: 'h3'},
         {title: 'H4', value: 'h4'},
         {title: 'Quote', value: 'blockquote'},
+        {
+          title: 'Small Caps',
+          value: 'smallCaps',
+          component: SmallCapsStyle,
+        },
       ],
       lists: [{title: 'Bullet', value: 'bullet'}],
       // Marks let you mark up inline text in the block editor.
@@ -38,6 +47,7 @@ export default defineType({
         decorators: [
           {title: 'Strong', value: 'strong'},
           {title: 'Emphasis', value: 'em'},
+          {title: 'Script', value: 'script'},
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
