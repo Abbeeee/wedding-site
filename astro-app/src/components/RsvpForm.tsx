@@ -50,10 +50,17 @@ const RsvpForm: React.FC = () => {
 						name="Email"
 						label="Email"
 						type="email"
-						required="Email is required"
-						pattern={{ value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email address' }}
+						required="Email krävs"
+						pattern={{ value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Ogiltig email adress' }}
 					/>
-					<InputField name="Name" label="Namn" type="text" required="Name is required" />
+					<InputField
+						name="Telefonnummer"
+						label="Telefonnummer"
+						type="phonenumber"
+						required="Telefonnummer krävs"
+						pattern={{ value: /^[0-9]{3}[\s-]?[0-9]{3}[\s-]?[0-9]{4}$/, message: 'Ogiltigt telefonnummer' }}
+					/>
+					<InputField name="Name" label="Namn" type="text" required="Vi behöver ditt namn" />
 					<InputField name="Allergies" label="Matpreferencer" type="text" />
 					<Button
 						type="submit"
