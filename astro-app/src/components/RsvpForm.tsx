@@ -3,17 +3,27 @@ import { type SubmitHandler } from 'react-hook-form';
 import { useFormContext } from 'react-hook-form';
 import InputField from './Form/InputField';
 import Button from './Button';
+import CheckboxField from './Form/CheckboxField';
 
 type FormData = {
 	Email: string;
 	Name: string;
-	Allergies: string;
+	PartnerName?: string; // Add this for second person
+	Phonenumber: string;
+	Foodpreference: string;
+	PartnerFoodpreference?: string; // Add this for second person
+	Friday: boolean;
+	FridayPartner?: boolean;
+	Saturday: boolean;
+	SaturdayPartner?: boolean;
 };
 
 const RsvpForm: React.FC = () => {
+	const [isCoupleRsvp, setIsCoupleRsvp] = useState(false);
 	const [serverResponse, setServerResponse] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 	const {
 		handleSubmit,
+		watch,
 		formState: { isSubmitting, isSubmitSuccessful, errors }
 	} = useFormContext<FormData>();
 
@@ -44,8 +54,42 @@ const RsvpForm: React.FC = () => {
 	return (
 		<section id="rsvpForm" className="mx-auto max-w-container">
 			<section className="mx-auto max-w-lg">
-				<h2>Häng med!</h2>
+				<h2 className="mt-0 text-balance leading-tight sm:text-3xl md:text-5xl">OSA</h2>
+				<p className="mb-4">
+					OSA i formuläret nedan senast den 31 mars 2025. Om du har några frågor får du gärna höra av dig till våra
+					<a className="ml-1" href="#96d2e804b618" aria-label="Gå till sektionen för toastmasters">
+						toastmasters
+					</a>
+					.
+				</p>
+				{/* Add toggle at the top */}
+				<div className="mb-6 flex items-center gap-4">
+					<button
+						type="button"
+						className={`border px-4 py-2 ${!isCoupleRsvp ? 'bg-primary text-white' : 'border-primary'}`}
+						onClick={() => setIsCoupleRsvp(false)}
+					>
+						1 person
+					</button>
+					<button
+						type="button"
+						className={`border px-4 py-2 ${isCoupleRsvp ? 'bg-primary text-white' : 'border-primary'}`}
+						onClick={() => setIsCoupleRsvp(true)}
+					>
+						2 personer
+					</button>
+				</div>
+
 				<form className="" onSubmit={handleSubmit(onSubmit)} noValidate>
+					<InputField name="Name" label="Namn" type="text" required="Vi behöver ditt namn" />
+					{isCoupleRsvp && (
+						<InputField
+							name="PartnerName"
+							label="Din partners namn"
+							type="text"
+							required="Vi behöver din partners namn"
+						/>
+					)}
 					<InputField
 						name="Email"
 						label="Email"
@@ -54,20 +98,36 @@ const RsvpForm: React.FC = () => {
 						pattern={{ value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Ogiltig email adress' }}
 					/>
 					<InputField
-						name="Telefonnummer"
+						name="Phonenumber"
 						label="Telefonnummer"
 						type="phonenumber"
 						required="Telefonnummer krävs"
 						pattern={{ value: /^[0-9]{3}[\s-]?[0-9]{3}[\s-]?[0-9]{4}$/, message: 'Ogiltigt telefonnummer' }}
 					/>
-					<InputField name="Name" label="Namn" type="text" required="Vi behöver ditt namn" />
-					<InputField name="Allergies" label="Matpreferencer" type="text" />
+					<InputField name="Food" label={isCoupleRsvp ? 'Dina matpreferencer' : 'Matpreferencer'} type="text" />
+					{isCoupleRsvp && <InputField name="PartnerFood" label="Din partners matpreferencer" type="text" />}
+					<div className="space-y-2">
+						<h3 className="font-medium">Fredag 6 juni</h3>
+						<div className="space-y-2">
+							<CheckboxField name="Friday" label={isCoupleRsvp ? 'Jag kommer' : 'Jag kommer på fredag'} />
+							{isCoupleRsvp && <CheckboxField name="FridayPartner" label="Min partner kommer" />}
+						</div>
+					</div>
+
+					<div className="mt-4 space-y-2">
+						<h3 className="font-medium">Lördag 7 juni</h3>
+						<div className="space-y-2">
+							<CheckboxField name="Saturday" label={isCoupleRsvp ? 'Jag kommer' : 'Jag kommer på lördag'} />
+							{isCoupleRsvp && <CheckboxField name="SaturdayPartner" label="Min partner kommer" />}
+						</div>
+					</div>
 					<Button
 						type="submit"
 						variant="outline"
 						isSubmitting={isSubmitting}
 						isSubmitSuccessful={isSubmitSuccessful}
 						disabled={isSubmitSuccessful}
+						className="mt-8 max-xs:w-full"
 					>
 						{isSubmitting ? 'Skickar...' : 'Skicka'}
 					</Button>
