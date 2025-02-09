@@ -27,6 +27,12 @@ const RsvpForm: React.FC = () => {
 		formState: { isSubmitting, isSubmitSuccessful, errors }
 	} = useFormContext<FormData>();
 
+	const fridayAttending = watch('Friday');
+	const fridayPartnerAttending = watch('FridayPartner');
+	const saturdayAttending = watch('Saturday');
+	const saturdayPartnerAttending = watch('SaturdayPartner');
+	const showSaturdayExtras = saturdayAttending || (isCoupleRsvp && saturdayPartnerAttending);
+
 	const onSubmit: SubmitHandler<FormData> = async (data) => {
 		try {
 			const response = await fetch(
@@ -56,7 +62,8 @@ const RsvpForm: React.FC = () => {
 			<section className="mx-auto max-w-lg">
 				<h2 className="mt-0 text-balance leading-tight sm:text-3xl md:text-5xl">OSA</h2>
 				<p className="mb-4">
-					OSA i formuläret nedan senast den 31 mars 2025. Om du har några frågor får du gärna höra av dig till våra
+					OSA i formuläret nedan senast den 31 mars 2025. Ange nedan ifall du vill OSA för en eller två personer. Om du
+					har några frågor får du gärna höra av dig till våra
 					<a className="ml-1" href="#96d2e804b618" aria-label="Gå till sektionen för toastmasters">
 						toastmasters
 					</a>
@@ -66,21 +73,21 @@ const RsvpForm: React.FC = () => {
 				<div className="mb-6 flex items-center gap-4">
 					<button
 						type="button"
-						className={`border px-4 py-2 ${!isCoupleRsvp ? 'bg-primary text-white' : 'border-primary'}`}
+						className={`border border-primary px-4 py-2 ${!isCoupleRsvp ? 'bg-primary text-white' : ''}`}
 						onClick={() => setIsCoupleRsvp(false)}
 					>
 						1 person
 					</button>
 					<button
 						type="button"
-						className={`border px-4 py-2 ${isCoupleRsvp ? 'bg-primary text-white' : 'border-primary'}`}
+						className={`border border-primary px-4 py-2 ${isCoupleRsvp ? 'bg-primary text-white' : ''}`}
 						onClick={() => setIsCoupleRsvp(true)}
 					>
 						2 personer
 					</button>
 				</div>
 
-				<form className="" onSubmit={handleSubmit(onSubmit)} noValidate>
+				{/* <form onSubmit={handleSubmit(onSubmit)} noValidate>
 					<InputField name="Name" label="Namn" type="text" required="Vi behöver ditt namn" />
 					{isCoupleRsvp && (
 						<InputField
@@ -114,7 +121,7 @@ const RsvpForm: React.FC = () => {
 						</div>
 					</div>
 
-					<div className="mt-4 space-y-2">
+					<div className="space-y-2 mt-4">
 						<h3 className="font-medium">Lördag 7 juni</h3>
 						<div className="space-y-2">
 							<CheckboxField name="Saturday" label={isCoupleRsvp ? 'Jag kommer' : 'Jag kommer på lördag'} />
@@ -131,7 +138,103 @@ const RsvpForm: React.FC = () => {
 					>
 						{isSubmitting ? 'Skickar...' : 'Skicka'}
 					</Button>
+				</form> */}
+
+				<form className="border border-solid border-gray-300 p-4" onSubmit={handleSubmit(onSubmit)} noValidate>
+					{/* Common fields */}
+					<div className="space-y-4">
+						<h3 className="mt-0 font-bold">Kontaktuppgifter</h3>
+						<InputField
+							name="Email"
+							label="Email"
+							type="email"
+							required="Email krävs"
+							pattern={{ value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Ogiltig email adress' }}
+						/>
+						<InputField
+							name="Phonenumber"
+							label="Telefonnummer"
+							type="phonenumber"
+							required="Telefonnummer krävs"
+							pattern={{ value: /^[0-9]{3}[\s-]?[0-9]{3}[\s-]?[0-9]{4}$/, message: 'Ogiltigt telefonnummer' }}
+						/>
+					</div>
+					{/* Person 1 Section */}
+					<div className="mt-8 space-y-4 border border-solid border-gray-300 p-4">
+						<h3 className="mt-0 font-bold">Person 1</h3>
+						<div className="space-y-4">
+							<InputField name="Name" label="För- och Efternamn" type="text" required="Vi behöver ditt namn" />
+							<div className="space-y-2">
+								<h4 className="text-sm font-medium">Närvaro</h4>
+								<div className="space-y-2">
+									<CheckboxField name="Friday" label="Kommer på fredag (6 juni)" />
+									<CheckboxField name="Saturday" label="Kommer på lördag (7 juni)" />
+								</div>
+							</div>
+							{(fridayAttending || saturdayAttending) && (
+								<>
+									<InputField name="Food" label="Matpreferencer" type="text" />
+									<InputField name="Relation" label="Relation till brudparet" type="text" />
+								</>
+							)}
+						</div>
+					</div>
+					{/* Person 2 Section - Conditional */}
+					{isCoupleRsvp && (
+						<div className="mt-8 space-y-4 border border-solid border-gray-300 p-4">
+							<h3 className="mt-0 font-bold">Person 2</h3>
+							<div className="space-y-4">
+								<InputField
+									name="PartnerName"
+									label="För- och Efternamn"
+									type="text"
+									required="Vi behöver namnet för person 2"
+								/>
+								<div className="space-y-2">
+									<h4 className="text-sm font-medium">Närvaro</h4>
+									<div className="space-y-2">
+										<CheckboxField name="FridayPartner" label="Kommer på fredag (6 juni)" />
+										<CheckboxField name="SaturdayPartner" label="Kommer på lördag (7 juni)" />
+									</div>
+								</div>
+							</div>
+							{(fridayPartnerAttending || saturdayPartnerAttending) && (
+								<>
+									<InputField name="PartnerFood" label="Matpreferencer" type="text" />
+									<InputField name="PartnerRelation" label="Relation till brudparet" type="text" />
+								</>
+							)}
+						</div>
+					)}
+
+					{showSaturdayExtras && (
+						<div className="mt-8 space-y-4 border border-solid border-gray-300 p-4">
+							<h3 className="mt-0 font-bold">Övrigt</h3>
+							<div className="space-y-4">
+								{saturdayAttending && (
+									<>
+										<InputField
+											name="SongRequest"
+											label={`Den här låten får upp ${isCoupleRsvp && saturdayPartnerAttending ? 'oss' : 'mig'} på dansgolvet`}
+											type="text"
+										/>
+									</>
+								)}
+							</div>
+						</div>
+					)}
+					<Button
+						type="submit"
+						variant="outline"
+						isSubmitting={isSubmitting}
+						isSubmitSuccessful={isSubmitSuccessful}
+						disabled={isSubmitSuccessful}
+						className="mt-8 max-xs:w-full"
+					>
+						{isSubmitting ? 'Skickar...' : 'Skicka'}
+					</Button>
 				</form>
+
 				{serverResponse && serverResponse.message == 'error' && (
 					<div className="my-4 flex items-center border-red-800 bg-red-100 p-2 text-red-800">
 						<svg
