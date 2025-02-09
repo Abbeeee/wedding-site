@@ -173,7 +173,7 @@ const RsvpForm: React.FC = () => {
 							</div>
 							{(fridayAttending || saturdayAttending) && (
 								<>
-									<InputField name="Food" label="Matpreferencer" type="text" />
+									<InputField name="Food" label="Eventuella allergier eller specialkost" type="text" />
 									<InputField name="Relation" label="Relation till brudparet" type="text" />
 								</>
 							)}
@@ -200,7 +200,7 @@ const RsvpForm: React.FC = () => {
 							</div>
 							{(fridayPartnerAttending || saturdayPartnerAttending) && (
 								<>
-									<InputField name="PartnerFood" label="Matpreferencer" type="text" />
+									<InputField name="PartnerFood" label="Eventuella allergier eller specialkost" type="text" />
 									<InputField name="PartnerRelation" label="Relation till brudparet" type="text" />
 								</>
 							)}
