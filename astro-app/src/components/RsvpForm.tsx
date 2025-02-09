@@ -211,7 +211,7 @@ const RsvpForm: React.FC = () => {
 						<div className="mt-8 space-y-4 border border-solid border-gray-300 p-4">
 							<h3 className="mt-0 font-bold">Övrigt</h3>
 							<div className="space-y-4">
-								{saturdayAttending && (
+								{(saturdayAttending || saturdayPartnerAttending) && (
 									<>
 										<InputField
 											name="SongRequest"
@@ -229,7 +229,7 @@ const RsvpForm: React.FC = () => {
 						isSubmitting={isSubmitting}
 						isSubmitSuccessful={isSubmitSuccessful}
 						disabled={isSubmitSuccessful}
-						className="mt-8 max-xs:w-full"
+						className="mt-8"
 					>
 						{isSubmitting ? 'Skickar...' : 'Skicka'}
 					</Button>
