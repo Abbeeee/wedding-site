@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import RsvpForm from './RsvpForm';
+import SpeechForm from './SpeechForm';
 
 export default function MyForm() {
-	const methods = useForm();
+	const rsvpMethods = useForm();
+	const speechMethods = useForm();
+
 	return (
-		<FormProvider {...methods}>
-			<RsvpForm />
-		</FormProvider>
+		<>
+			<FormProvider {...rsvpMethods}>{<RsvpForm />}</FormProvider>
+			<FormProvider {...speechMethods}>
+				<SpeechForm />
+			</FormProvider>
+		</>
 	);
 }

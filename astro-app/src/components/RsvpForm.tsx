@@ -8,10 +8,10 @@ import CheckboxField from './Form/CheckboxField';
 type FormData = {
 	Email: string;
 	Name: string;
-	PartnerName?: string; // Add this for second person
+	PartnerName?: string;
 	Phonenumber: string;
 	Foodpreference: string;
-	PartnerFoodpreference?: string; // Add this for second person
+	PartnerFoodpreference?: string;
 	Friday: boolean;
 	FridayPartner?: boolean;
 	Saturday: boolean;
@@ -36,7 +36,7 @@ const RsvpForm: React.FC = () => {
 	const onSubmit: SubmitHandler<FormData> = async (data) => {
 		try {
 			const response = await fetch(
-				'https://script.google.com/macros/s/AKfycbydLowU70XdoxUXH39yvVAozoQoVFgeH1cDJ-90tGFu88WXEUdOUxuYKLi8f8eKNp5lfg/exec',
+				'https://script.google.com/macros/s/AKfycbwbZEkMMac9cdsTPdlH5zBwMbN9H2p4npc4-7m106iq7L4p-xpS7SXGIXgN1iXiM3HATw/exec',
 				{
 					method: 'POST',
 					headers: {
@@ -87,59 +87,6 @@ const RsvpForm: React.FC = () => {
 					</button>
 				</div>
 
-				{/* <form onSubmit={handleSubmit(onSubmit)} noValidate>
-					<InputField name="Name" label="Namn" type="text" required="Vi behöver ditt namn" />
-					{isCoupleRsvp && (
-						<InputField
-							name="PartnerName"
-							label="Din partners namn"
-							type="text"
-							required="Vi behöver din partners namn"
-						/>
-					)}
-					<InputField
-						name="Email"
-						label="Email"
-						type="email"
-						required="Email krävs"
-						pattern={{ value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Ogiltig email adress' }}
-					/>
-					<InputField
-						name="Phonenumber"
-						label="Telefonnummer"
-						type="phonenumber"
-						required="Telefonnummer krävs"
-						pattern={{ value: /^[0-9]{3}[\s-]?[0-9]{3}[\s-]?[0-9]{4}$/, message: 'Ogiltigt telefonnummer' }}
-					/>
-					<InputField name="Food" label={isCoupleRsvp ? 'Dina matpreferencer' : 'Matpreferencer'} type="text" />
-					{isCoupleRsvp && <InputField name="PartnerFood" label="Din partners matpreferencer" type="text" />}
-					<div className="space-y-2">
-						<h3 className="font-medium">Fredag 6 juni</h3>
-						<div className="space-y-2">
-							<CheckboxField name="Friday" label={isCoupleRsvp ? 'Jag kommer' : 'Jag kommer på fredag'} />
-							{isCoupleRsvp && <CheckboxField name="FridayPartner" label="Min partner kommer" />}
-						</div>
-					</div>
-
-					<div className="space-y-2 mt-4">
-						<h3 className="font-medium">Lördag 7 juni</h3>
-						<div className="space-y-2">
-							<CheckboxField name="Saturday" label={isCoupleRsvp ? 'Jag kommer' : 'Jag kommer på lördag'} />
-							{isCoupleRsvp && <CheckboxField name="SaturdayPartner" label="Min partner kommer" />}
-						</div>
-					</div>
-					<Button
-						type="submit"
-						variant="outline"
-						isSubmitting={isSubmitting}
-						isSubmitSuccessful={isSubmitSuccessful}
-						disabled={isSubmitSuccessful}
-						className="mt-8 max-xs:w-full"
-					>
-						{isSubmitting ? 'Skickar...' : 'Skicka'}
-					</Button>
-				</form> */}
-
 				<form className="border border-solid border-gray-300 p-4" onSubmit={handleSubmit(onSubmit)} noValidate>
 					{/* Common fields */}
 					<div className="space-y-4">
@@ -152,7 +99,7 @@ const RsvpForm: React.FC = () => {
 							pattern={{ value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Ogiltig email adress' }}
 						/>
 						<InputField
-							name="Phonenumber"
+							name="Telefonnummer"
 							label="Telefonnummer"
 							type="phonenumber"
 							required="Telefonnummer krävs"
@@ -163,7 +110,7 @@ const RsvpForm: React.FC = () => {
 					<div className="mt-8 space-y-4 border border-solid border-gray-300 p-4">
 						<h3 className="mt-0 font-bold">Person 1</h3>
 						<div className="space-y-4">
-							<InputField name="Name" label="För- och Efternamn" type="text" required="Vi behöver ditt namn" />
+							<InputField name="Namn" label="För- och Efternamn" type="text" required="Vi behöver ditt namn" />
 							<div className="space-y-2">
 								<h4 className="text-sm font-medium">Närvaro</h4>
 								<div className="space-y-2">
@@ -173,7 +120,7 @@ const RsvpForm: React.FC = () => {
 							</div>
 							{(fridayAttending || saturdayAttending) && (
 								<>
-									<InputField name="Food" label="Eventuella allergier eller specialkost" type="text" />
+									<InputField name="Allergier/specialkost" label="Eventuella allergier eller specialkost" type="text" />
 									<InputField name="Relation" label="Relation till brudparet" type="text" />
 								</>
 							)}
@@ -185,7 +132,7 @@ const RsvpForm: React.FC = () => {
 							<h3 className="mt-0 font-bold">Person 2</h3>
 							<div className="space-y-4">
 								<InputField
-									name="PartnerName"
+									name="NamnPartner"
 									label="För- och Efternamn"
 									type="text"
 									required="Vi behöver namnet för person 2"
@@ -200,8 +147,12 @@ const RsvpForm: React.FC = () => {
 							</div>
 							{(fridayPartnerAttending || saturdayPartnerAttending) && (
 								<>
-									<InputField name="PartnerFood" label="Eventuella allergier eller specialkost" type="text" />
-									<InputField name="PartnerRelation" label="Relation till brudparet" type="text" />
+									<InputField
+										name="Allergier/specialkost (+1)"
+										label="Eventuella allergier eller specialkost"
+										type="text"
+									/>
+									<InputField name="Relation (+1)" label="Relation till brudparet" type="text" />
 								</>
 							)}
 						</div>
