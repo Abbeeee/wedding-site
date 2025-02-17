@@ -69,8 +69,8 @@ const Navigation: FC<Props> = ({ navLinks, ctaBtn }) => {
 				className={`fixed z-20 w-full transform bg-background py-2 shadow-sm transition-transform duration-300 md:py-4 ${!isVisible ? '-translate-y-full' : 'translate-y-0'}`}
 			>
 				<div className="mx-auto flex max-w-container items-center justify-between gap-4">
-					<a className="header__title min-w-[80px]" href="/">
-						A&H
+					<a className="relative h-[38px]" href="/">
+						<img src="/monogram.png" alt="monogram" height={38} className="h-full w-full" />
 					</a>
 					{navLinks && (
 						<nav className="hidden h-full items-center gap-4 md:flex">
