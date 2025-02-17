@@ -27,7 +27,7 @@ const ImageBlock = (props: Props) => {
 				image && (
 					<img
 						className="w-full object-cover"
-						src={urlFor(image).width(1024).height(420).auto('format').url()}
+						src={urlFor(image).width(1240).height(500).auto('format').url()}
 						alt={(image.alt as string) || ''}
 					/>
 				)

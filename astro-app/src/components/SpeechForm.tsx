@@ -47,9 +47,9 @@ const SpeechForm: React.FC = () => {
 			<section className="mx-auto max-w-lg">
 				<h2 className="mt-0 text-balance leading-tight sm:text-3xl md:text-5xl">Tal</h2>
 				<p className="mb-4">
-					Anmäl ifall du önskar hålla tal i formuläret nedan senast den 31 april 2025. Ett bra riktmärke är att hålla
-					dig till 5 minuter. Antonia & Henrik kommer inte att se vilka som anmäler tal. Om du har några frågor får du
-					gärna höra av dig till våra
+					Anmäl ifall du önskar hålla tal eller spex i formuläret nedan senast den 31 april 2025. Ett bra riktmärke är
+					att hålla dig till 5 minuter. Antonia & Henrik kommer inte att se vilka som anmäler tal eller spex. Om du har
+					några frågor får du gärna höra av dig till våra
 					<a className="ml-1" href="#96d2e804b618" aria-label="Gå till sektionen för toastmasters">
 						toastmasters
 					</a>
@@ -72,7 +72,10 @@ const SpeechForm: React.FC = () => {
 							label="Telefonnummer"
 							type="phonenumber"
 							required="Telefonnummer krävs"
-							pattern={{ value: /^[0-9]{3}[\s-]?[0-9]{3}[\s-]?[0-9]{4}$/, message: 'Ogiltigt telefonnummer' }}
+							pattern={{
+								value: /^(\+46|0)[0-9]{2}[\s-]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/,
+								message: 'Ogiltigt telefonnummer'
+							}}
 						/>
 						<InputField
 							name="Relation"

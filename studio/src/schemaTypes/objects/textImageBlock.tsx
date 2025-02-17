@@ -6,6 +6,12 @@ export default defineType({
   title: 'TextImageBlock',
   fields: [
     {
+      name: 'blockHeading',
+      title: 'Block heading',
+      type: 'string',
+      description: 'Valfri rubrik som visas ovanför blocket',
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',
@@ -26,6 +32,12 @@ export default defineType({
       description: 'Valfri formaterbar text',
     },
     {
+      name: 'smallerHeading',
+      title: 'Smaller heading',
+      type: 'boolean',
+      initialValue: false,
+    },
+    {
       name: 'reverse',
       title: 'Reverse',
       type: 'boolean',
@@ -44,6 +56,12 @@ export default defineType({
       type: 'number',
       description:
         'If no crop is applied, set a max height for the image. Default is 200. Value is in pixels.',
+    },
+    {
+      name: 'smallerMargin',
+      title: 'Smaller margin',
+      type: 'boolean',
+      initialValue: false,
     },
   ],
   preview: {

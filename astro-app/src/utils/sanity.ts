@@ -84,12 +84,15 @@ export interface ImageBlock {
 
 export interface TextImageBlock {
 	_type: 'textImageBlock';
+	blockHeading?: string;
 	image?: ImageAsset;
 	heading?: string;
 	text?: PortableTextBlock[];
+	smallerHeading?: boolean;
 	reverse?: boolean;
 	noCrop?: boolean;
 	maxHeight?: number;
+	smallerMargin?: boolean;
 }
 
 export interface CenterTextBlock {

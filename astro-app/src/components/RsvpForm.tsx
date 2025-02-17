@@ -16,6 +16,10 @@ type FormData = {
 	FridayPartner?: boolean;
 	Saturday: boolean;
 	SaturdayPartner?: boolean;
+	BothDays?: boolean;
+	BothDaysPartner?: boolean;
+	Breakfast?: boolean;
+	BreakfastPartner?: boolean;
 };
 
 const RsvpForm: React.FC = () => {
@@ -31,6 +35,10 @@ const RsvpForm: React.FC = () => {
 	const fridayPartnerAttending = watch('FridayPartner');
 	const saturdayAttending = watch('Saturday');
 	const saturdayPartnerAttending = watch('SaturdayPartner');
+	const bothDaysAttending = watch('BothDays');
+	const bothDaysPartnerAttending = watch('BothDaysPartner');
+	const breakfastAttending = watch('Breakfast');
+	const breakfastPartnerAttending = watch('BreakfastPartner');
 	const showSaturdayExtras = saturdayAttending || (isCoupleRsvp && saturdayPartnerAttending);
 
 	const onSubmit: SubmitHandler<FormData> = async (data) => {
@@ -61,9 +69,13 @@ const RsvpForm: React.FC = () => {
 		<section id="rsvpForm" className="mx-auto max-w-container">
 			<section className="mx-auto max-w-lg">
 				<h2 className="mt-0 text-balance leading-tight sm:text-3xl md:text-5xl">OSA</h2>
-				<p className="mb-4">
-					OSA i formuläret nedan senast den 31 mars 2025. Ange nedan ifall du vill OSA för en eller två personer. Om du
-					har några frågor får du gärna höra av dig till våra
+				<p className="mb-4 text-pretty">
+					OSA i formuläret nedan senast den 31 mars 2025. Ange nedan ifall du vill OSA för en eller två personer.
+					Anmälan utav tal görs i{' '}
+					<a href="#speechform" aria-label="Gå till formuläret för att anmäla tal">
+						formuläret
+					</a>{' '}
+					nedan. Om du har några frågor får du gärna höra av dig till våra
 					<a className="ml-1" href="#96d2e804b618" aria-label="Gå till sektionen för toastmasters">
 						toastmasters
 					</a>
@@ -103,7 +115,10 @@ const RsvpForm: React.FC = () => {
 							label="Telefonnummer"
 							type="phonenumber"
 							required="Telefonnummer krävs"
-							pattern={{ value: /^[0-9]{3}[\s-]?[0-9]{3}[\s-]?[0-9]{4}$/, message: 'Ogiltigt telefonnummer' }}
+							pattern={{
+								value: /^(\+46|0)[0-9]{2}[\s-]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/,
+								message: 'Ogiltigt telefonnummer'
+							}}
 						/>
 					</div>
 					{/* Person 1 Section */}
@@ -113,12 +128,14 @@ const RsvpForm: React.FC = () => {
 							<InputField name="Namn" label="För- och Efternamn" type="text" required="Vi behöver ditt namn" />
 							<div className="space-y-2">
 								<h4 className="text-sm font-medium">Närvaro</h4>
-								<div className="space-y-2">
-									<CheckboxField name="Friday" label="Kommer på fredag (6 juni)" />
-									<CheckboxField name="Saturday" label="Kommer på lördag (7 juni)" />
+								<div>
+									<CheckboxField name="Friday" label="Kommer på minglet (6 juni)" />
+									<CheckboxField name="Saturday" label="Kommer på brölloppet (7 juni)" />
+									<CheckboxField name="BothDays" label="Kommer båda dagarna" />
+									<CheckboxField name="Breakfast" label="Kommer inte bo över men kommer gärna på frukost" />
 								</div>
 							</div>
-							{(fridayAttending || saturdayAttending) && (
+							{(fridayAttending || saturdayAttending || bothDaysAttending || breakfastAttending) && (
 								<>
 									<InputField name="Allergier/specialkost" label="Eventuella allergier eller specialkost" type="text" />
 									<InputField name="Relation" label="Relation till brudparet" type="text" />
@@ -139,13 +156,18 @@ const RsvpForm: React.FC = () => {
 								/>
 								<div className="space-y-2">
 									<h4 className="text-sm font-medium">Närvaro</h4>
-									<div className="space-y-2">
-										<CheckboxField name="FridayPartner" label="Kommer på fredag (6 juni)" />
-										<CheckboxField name="SaturdayPartner" label="Kommer på lördag (7 juni)" />
+									<div>
+										<CheckboxField name="FridayPartner" label="Kommer på minglet (6 juni)" />
+										<CheckboxField name="SaturdayPartner" label="Kommer på brölloppet (7 juni)" />
+										<CheckboxField name="BothDaysPartner" label="Kommer båda dagarna" />
+										<CheckboxField name="BreakfastPartner" label="Kommer inte bo över men kommer gärna på frukost" />
 									</div>
 								</div>
 							</div>
-							{(fridayPartnerAttending || saturdayPartnerAttending) && (
+							{(fridayPartnerAttending ||
+								saturdayPartnerAttending ||
+								bothDaysPartnerAttending ||
+								breakfastAttending) && (
 								<>
 									<InputField
 										name="Allergier/specialkost (+1)"
