@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form';
 import InputField from './Form/InputField';
 import Button from './Button';
 import CheckboxField from './Form/CheckboxField';
+import emailjs from '@emailjs/browser';
 
 type FormData = {
 	Email: string;
@@ -42,8 +43,27 @@ const RsvpForm: React.FC = () => {
 	const showSaturdayExtras =
 		saturdayAttending || saturdayPartnerAttending || bothDaysAttending || bothDaysPartnerAttending;
 
+	const sendErrorNotification = async (error: Error, formData: FormData) => {
+		try {
+			await emailjs.send(
+				'service_bee7iin',
+				'template_aruqkcg',
+				{
+					error_message: error.message,
+					form_type: 'RSVP Form',
+					form_data: JSON.stringify(formData),
+					timestamp: new Date().toISOString()
+				},
+				'90JZ7TkQHVZKC1edK'
+			);
+		} catch (emailError) {
+			console.error('Failed to send error notification:', emailError);
+		}
+	};
+
 	const onSubmit: SubmitHandler<FormData> = async (data) => {
 		try {
+			throw new Error('Failed to submit form');
 			const response = await fetch(
 				'https://script.google.com/macros/s/AKfycbwbZEkMMac9cdsTPdlH5zBwMbN9H2p4npc4-7m106iq7L4p-xpS7SXGIXgN1iXiM3HATw/exec',
 				{
@@ -63,6 +83,7 @@ const RsvpForm: React.FC = () => {
 			setServerResponse({ type: 'success', message: 'Form submitted successfully!' });
 		} catch (error) {
 			setServerResponse({ type: 'error', message: (error as Error).message });
+			await sendErrorNotification(error as Error, data);
 		}
 	};
 
@@ -209,7 +230,7 @@ const RsvpForm: React.FC = () => {
 					</Button>
 				</form>
 
-				{serverResponse && serverResponse.message == 'error' && (
+				{serverResponse && serverResponse.type == 'error' && (
 					<div className="my-4 flex items-center border-red-800 bg-red-100 p-2 text-red-800">
 						<svg
 							className="mr-4 inline size-8 min-w-8"
@@ -225,7 +246,7 @@ const RsvpForm: React.FC = () => {
 						</svg>
 						<div>
 							<p className="text-pretty">
-								Något gick fel! Ditt svar har inte skickats. Försök igen eller kontakta [någon kontakt här kanske?]
+								Något gick fel! Ditt svar har inte skickats. Försök igen eller kontakta antoniaochhenrik@gmail.com.
 							</p>
 						</div>
 					</div>
