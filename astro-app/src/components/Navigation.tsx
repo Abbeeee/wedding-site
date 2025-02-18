@@ -31,31 +31,33 @@ const Navigation: FC<Props> = ({ navLinks, ctaBtn }) => {
 		return () => document.removeEventListener('keydown', handleEscape);
 	}, [isMenuActive]);
 
-	const [isVisible, setIsVisible] = useState(true);
-	const [lastScrollY, setLastScrollY] = useState(0);
+	const isVisible = true;
 
-	useEffect(() => {
-		const mediaQuery = window.matchMedia('(min-width: 1px)');
+	// const [isVisible, setIsVisible] = useState(true);
+	// const [lastScrollY, setLastScrollY] = useState(0);
 
-		const handleScroll = () => {
-			if (mediaQuery.matches && !isMenuActive) {
-				const currentScrollY = window.scrollY;
+	// useEffect(() => {
+	// 	const mediaQuery = window.matchMedia('(min-width: 1px)');
 
-				if (currentScrollY > 100) {
-					setIsVisible(currentScrollY < lastScrollY);
-				} else {
-					setIsVisible(true);
-				}
+	// 	const handleScroll = () => {
+	// 		if (mediaQuery.matches && !isMenuActive) {
+	// 			const currentScrollY = window.scrollY;
 
-				setLastScrollY(currentScrollY);
-			} else {
-				setIsVisible(true);
-			}
-		};
+	// 			if (currentScrollY > 100) {
+	// 				setIsVisible(currentScrollY < lastScrollY);
+	// 			} else {
+	// 				setIsVisible(true);
+	// 			}
 
-		window.addEventListener('scroll', handleScroll, { passive: true });
-		return () => window.removeEventListener('scroll', handleScroll);
-	}, [lastScrollY, isMenuActive]);
+	// 			setLastScrollY(currentScrollY);
+	// 		} else {
+	// 			setIsVisible(true);
+	// 		}
+	// 	};
+
+	// 	window.addEventListener('scroll', handleScroll, { passive: true });
+	// 	return () => window.removeEventListener('scroll', handleScroll);
+	// }, [lastScrollY, isMenuActive]);
 
 	const barClasses =
 		'bg-primary w-full h-[2px] absolute right-0 left-0 transition-all duration-200 ease-[cubic-bezier(0.1,0.82,0.76,0.965)]';
