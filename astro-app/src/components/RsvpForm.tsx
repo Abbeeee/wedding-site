@@ -49,9 +49,10 @@ const RsvpForm: React.FC = () => {
 				'service_bee7iin',
 				'template_aruqkcg',
 				{
-					error_message: error.message,
+					message: error.message,
 					form_type: 'RSVP Form',
 					form_data: JSON.stringify(formData),
+					from_name: formData.Name,
 					timestamp: new Date().toISOString()
 				},
 				'90JZ7TkQHVZKC1edK'
@@ -63,7 +64,6 @@ const RsvpForm: React.FC = () => {
 
 	const onSubmit: SubmitHandler<FormData> = async (data) => {
 		try {
-			throw new Error('Failed to submit form');
 			const response = await fetch(
 				'https://script.google.com/macros/s/AKfycbwbZEkMMac9cdsTPdlH5zBwMbN9H2p4npc4-7m106iq7L4p-xpS7SXGIXgN1iXiM3HATw/exec',
 				{
