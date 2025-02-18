@@ -39,7 +39,8 @@ const RsvpForm: React.FC = () => {
 	const bothDaysPartnerAttending = watch('BothDaysPartner');
 	const breakfastAttending = watch('Breakfast');
 	const breakfastPartnerAttending = watch('BreakfastPartner');
-	const showSaturdayExtras = saturdayAttending || (isCoupleRsvp && saturdayPartnerAttending);
+	const showSaturdayExtras =
+		saturdayAttending || saturdayPartnerAttending || bothDaysAttending || bothDaysPartnerAttending;
 
 	const onSubmit: SubmitHandler<FormData> = async (data) => {
 		try {
@@ -167,7 +168,7 @@ const RsvpForm: React.FC = () => {
 							{(fridayPartnerAttending ||
 								saturdayPartnerAttending ||
 								bothDaysPartnerAttending ||
-								breakfastAttending) && (
+								breakfastPartnerAttending) && (
 								<>
 									<InputField
 										name="Allergier/specialkost (+1)"
@@ -184,7 +185,7 @@ const RsvpForm: React.FC = () => {
 						<div className="mt-8 space-y-4 border border-solid border-gray-300 p-4">
 							<h3 className="mt-0 font-bold">Övrigt</h3>
 							<div className="space-y-4">
-								{(saturdayAttending || saturdayPartnerAttending) && (
+								{(saturdayAttending || saturdayPartnerAttending || bothDaysAttending || bothDaysPartnerAttending) && (
 									<>
 										<InputField
 											name="SongRequest"
