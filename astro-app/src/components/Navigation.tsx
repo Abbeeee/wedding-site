@@ -60,7 +60,7 @@ const Navigation: FC<Props> = ({ navLinks, ctaBtn }) => {
 	const barClasses =
 		'bg-primary w-full h-[2px] absolute right-0 left-0 transition-all duration-200 ease-[cubic-bezier(0.1,0.82,0.76,0.965)]';
 
-	const linkDefaultClasses = '!text-primary';
+	const linkDefaultClasses = '!text-primary !no-underline hover:!underline';
 	const mobileLinkClasses = 'text-3xl !no-underline';
 
 	return (
@@ -71,7 +71,7 @@ const Navigation: FC<Props> = ({ navLinks, ctaBtn }) => {
 			>
 				<div className="mx-auto flex max-w-container items-center justify-between gap-4">
 					<a className="relative h-[32px]" href="/">
-						<img src="/monogram.png" alt="monogram" height={32} className="mb-[2px] h-full w-full" />
+						<img className="mb-[2px] h-full" src="/monogram.png" alt="monogram" height={32} />
 					</a>
 					{navLinks && (
 						<nav className="hidden h-full items-center gap-4 md:flex">

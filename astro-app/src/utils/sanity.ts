@@ -83,6 +83,7 @@ export interface ImageBlock {
 }
 
 export interface TextImageBlock {
+	_key: string;
 	_type: 'textImageBlock';
 	blockHeading?: string;
 	image?: ImageAsset;
