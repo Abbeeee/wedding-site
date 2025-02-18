@@ -66,11 +66,12 @@ const Navigation: FC<Props> = ({ navLinks, ctaBtn }) => {
 	return (
 		<>
 			<header
-				className={`fixed z-20 w-full transform bg-background py-2 shadow-sm transition-transform duration-300 md:py-4 ${!isVisible ? '-translate-y-full' : 'translate-y-0'}`}
+				className={`fixed z-20 w-full transform bg-background py-2 transition-transform duration-300 md:py-4 ${!isVisible ? '-translate-y-full' : 'translate-y-0'}`}
+				style={{ boxShadow: 'rgba(100, 100, 111, 0.1) 0px 6px 20px 0px' }}
 			>
 				<div className="mx-auto flex max-w-container items-center justify-between gap-4">
-					<a className="relative h-[38px]" href="/">
-						<img src="/monogram.png" alt="monogram" height={38} className="h-full w-full" />
+					<a className="relative h-[32px]" href="/">
+						<img src="/monogram.png" alt="monogram" height={32} className="mb-[2px] h-full w-full" />
 					</a>
 					{navLinks && (
 						<nav className="hidden h-full items-center gap-4 md:flex">
