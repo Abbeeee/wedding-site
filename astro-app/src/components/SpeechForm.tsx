@@ -3,12 +3,12 @@ import { type SubmitHandler } from 'react-hook-form';
 import { useFormContext } from 'react-hook-form';
 import InputField from './Form/InputField';
 import Button from './Button';
-import CheckboxField from './Form/CheckboxField';
+import emailjs from '@emailjs/browser';
 
 type FormData = {
 	Email: string;
-	Phonenumber: string;
-	Name: string;
+	Telefonnummer: string;
+	Namn: string;
 };
 
 const SpeechForm: React.FC = () => {
@@ -17,6 +17,25 @@ const SpeechForm: React.FC = () => {
 		handleSubmit,
 		formState: { isSubmitting, isSubmitSuccessful, errors }
 	} = useFormContext<FormData>();
+
+	const sendMailNotification = async (data: FormData, error?: Error) => {
+		try {
+			await emailjs.send(
+				'service_bee7iin',
+				'template_aruqkcg',
+				{
+					message: error?.message ?? 'Form submitted successfully',
+					subject: error ? 'Speech Error' : 'Speech Success',
+					form_data: JSON.stringify(data),
+					name: data.Namn,
+					timestamp: new Date().toISOString()
+				},
+				'90JZ7TkQHVZKC1edK'
+			);
+		} catch (error) {
+			console.error('Failed to send error notification:', error);
+		}
+	};
 
 	const onSubmit: SubmitHandler<FormData> = async (data) => {
 		try {
@@ -37,8 +56,10 @@ const SpeechForm: React.FC = () => {
 			}
 
 			setServerResponse({ type: 'success', message: 'Form submitted successfully!' });
+			await sendMailNotification(data);
 		} catch (error) {
 			setServerResponse({ type: 'error', message: (error as Error).message });
+			await sendMailNotification(data, error as Error);
 		}
 	};
 
@@ -47,7 +68,7 @@ const SpeechForm: React.FC = () => {
 			<section className="mx-auto max-w-lg">
 				<h2 className="mt-0 text-balance leading-tight sm:text-3xl md:text-5xl">Tal</h2>
 				<p className="mb-4">
-					Anmäl ifall du önskar hålla tal eller spex i formuläret nedan senast den 31 april 2025. Ett bra riktmärke är
+					Anmäl ifall du önskar hålla tal eller spex i formuläret nedan senast den 30 april 2025. Ett bra riktmärke är
 					att hålla dig till 5 minuter. Antonia & Henrik kommer inte att se vilka som anmäler tal eller spex. Om du har
 					några frågor får du gärna höra av dig till våra
 					<a className="ml-1" href="#96d2e804b618" aria-label="Gå till sektionen för toastmasters">
@@ -91,14 +112,15 @@ const SpeechForm: React.FC = () => {
 						variant="outline"
 						isSubmitting={isSubmitting}
 						isSubmitSuccessful={isSubmitSuccessful}
-						disabled={isSubmitSuccessful}
+						error={serverResponse?.type == 'error' ? true : false}
+						disabled={isSubmitSuccessful && !errors}
 						className="mt-8"
 					>
 						{isSubmitting ? 'Skickar...' : 'Skicka'}
 					</Button>
 				</form>
 
-				{serverResponse && serverResponse.message == 'error' && (
+				{serverResponse && serverResponse.type == 'error' && (
 					<div className="my-4 flex items-center border-red-800 bg-red-100 p-2 text-red-800">
 						<svg
 							className="mr-4 inline size-8 min-w-8"
@@ -114,7 +136,7 @@ const SpeechForm: React.FC = () => {
 						</svg>
 						<div>
 							<p className="text-pretty">
-								Något gick fel! Ditt svar har inte skickats. Försök igen eller kontakta [någon kontakt här kanske?]
+								Ditt svar har inte skickats! Försök igen eller kontakta antoniaochhenrik@gmail.com
 							</p>
 						</div>
 					</div>

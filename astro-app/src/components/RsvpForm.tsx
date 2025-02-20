@@ -8,8 +8,8 @@ import emailjs from '@emailjs/browser';
 
 type FormData = {
 	Email: string;
-	Name: string;
-	PartnerName?: string;
+	Namn: string;
+	NamnPartner?: string;
 	Phonenumber: string;
 	Foodpreference: string;
 	PartnerFoodpreference?: string;
@@ -29,6 +29,7 @@ const RsvpForm: React.FC = () => {
 	const {
 		handleSubmit,
 		watch,
+		reset,
 		formState: { isSubmitting, isSubmitSuccessful, errors }
 	} = useFormContext<FormData>();
 
@@ -43,26 +44,29 @@ const RsvpForm: React.FC = () => {
 	const showSaturdayExtras =
 		saturdayAttending || saturdayPartnerAttending || bothDaysAttending || bothDaysPartnerAttending;
 
-	const sendErrorNotification = async (error: Error, formData: FormData) => {
+	const sendMailNotification = async (data: FormData, error?: Error) => {
 		try {
 			await emailjs.send(
 				'service_bee7iin',
 				'template_aruqkcg',
 				{
-					message: error.message,
-					form_type: 'RSVP Form',
-					form_data: JSON.stringify(formData),
-					from_name: formData.Name,
+					message: error?.message ?? 'Form submitted successfully',
+					subject: error ? 'RSVP Error' : 'RSVP Success',
+					form_data: JSON.stringify(data),
+					name: data.Namn,
 					timestamp: new Date().toISOString()
 				},
 				'90JZ7TkQHVZKC1edK'
 			);
-		} catch (emailError) {
-			console.error('Failed to send error notification:', emailError);
+		} catch (error) {
+			console.error('Failed to send error notification:', error);
 		}
 	};
 
 	const onSubmit: SubmitHandler<FormData> = async (data) => {
+		setServerResponse(null);
+		console.log({ serverResponse });
+
 		try {
 			const response = await fetch(
 				'https://script.google.com/macros/s/AKfycbwbZEkMMac9cdsTPdlH5zBwMbN9H2p4npc4-7m106iq7L4p-xpS7SXGIXgN1iXiM3HATw/exec',
@@ -81,9 +85,10 @@ const RsvpForm: React.FC = () => {
 			}
 
 			setServerResponse({ type: 'success', message: 'Form submitted successfully!' });
+			await sendMailNotification(data);
 		} catch (error) {
 			setServerResponse({ type: 'error', message: (error as Error).message });
-			await sendErrorNotification(error as Error, data);
+			await sendMailNotification(data, error as Error);
 		}
 	};
 
@@ -223,7 +228,8 @@ const RsvpForm: React.FC = () => {
 						variant="outline"
 						isSubmitting={isSubmitting}
 						isSubmitSuccessful={isSubmitSuccessful}
-						disabled={isSubmitSuccessful}
+						error={serverResponse?.type == 'error' ? true : false}
+						disabled={isSubmitSuccessful && !errors}
 						className="mt-8"
 					>
 						{isSubmitting ? 'Skickar...' : 'Skicka'}
@@ -246,7 +252,7 @@ const RsvpForm: React.FC = () => {
 						</svg>
 						<div>
 							<p className="text-pretty">
-								Något gick fel! Ditt svar har inte skickats. Försök igen eller kontakta antoniaochhenrik@gmail.com.
+								Ditt svar har inte skickats! Försök igen eller kontakta antoniaochhenrik@gmail.com
 							</p>
 						</div>
 					</div>

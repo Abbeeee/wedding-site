@@ -21,6 +21,7 @@ interface ButtonProps {
 	size?: 'sm' | 'md' | 'lg';
 	iconStart?: JSX.Element | string;
 	fullWidth?: boolean;
+	error?: boolean;
 }
 
 const Button: React.FC<ButtonOrAnchorProps> = ({
@@ -40,7 +41,8 @@ const Button: React.FC<ButtonOrAnchorProps> = ({
 	size = 'md',
 	iconStart,
 	iconEnd,
-	fullWidth = false
+	fullWidth = false,
+	error
 }) => {
 	const combinedClassName = `${className1} ${className2}`.trim();
 
@@ -88,10 +90,10 @@ const Button: React.FC<ButtonOrAnchorProps> = ({
 						role="status"
 					/>
 				</div>
-			) : isSubmitSuccessful ? (
+			) : isSubmitSuccessful && !error ? (
 				<>
 					Skickat!{' '}
-					<svg className="size-5" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<svg className="size-4" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path
 							fill="none"
 							stroke="currentColor"
@@ -100,6 +102,16 @@ const Button: React.FC<ButtonOrAnchorProps> = ({
 							strokeWidth="2"
 							d="M20 6L9 17l-5-5"
 						/>
+					</svg>
+				</>
+			) : error ? (
+				<>
+					Något gick fel!{' '}
+					<svg width="20" height="20" viewBox="0 0 24 24">
+						<g fill="currentColor" fillRule="evenodd" clipRule="evenodd">
+							<path d="M5.47 5.47a.75.75 0 0 1 1.06 0l12 12a.75.75 0 1 1-1.06 1.06l-12-12a.75.75 0 0 1 0-1.06" />
+							<path d="M18.53 5.47a.75.75 0 0 1 0 1.06l-12 12a.75.75 0 0 1-1.06-1.06l12-12a.75.75 0 0 1 1.06 0" />
+						</g>
 					</svg>
 				</>
 			) : (
