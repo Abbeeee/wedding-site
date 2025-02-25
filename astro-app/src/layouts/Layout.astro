@@ -23,28 +23,26 @@ const ctaBtn = settings?.callToAction;
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<meta name="apple-mobile-web-app-title" content="Antonia & Henrik" />
 		<link rel="manifest" href="/site.webmanifest" />
-
 		<meta name="generator" content={Astro.generator} />
-
-		<!-- TODO: Remove this? -->
-		<!-- Google fonts -->
-		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Inter:wght@500;700;800&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-			rel="stylesheet"
-		/> -->
-
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
 	<body class="flex h-full min-h-screen flex-col bg-background text-primary">
 		<Navigation navLinks={navLinks} ctaBtn={ctaBtn} client:only="react" />
 
-		<main class="mx-auto mb-10 mt-[calc(72px+3rem)] w-full md:mt-0 lg:mb-16">
+		<main class="mx-auto mt-[calc(72px+3rem)] w-full md:mt-0">
 			<slot />
 		</main>
 
-		<footer class="mt-auto p-6 text-center"></footer>
+		<footer class="mt-auto flex flex-col items-center justify-center pb-6 pt-0">
+			<img class="mb-[2px] w-20 translate-y-8" src="/monogram.png" alt="monogram" height={32} loading="lazy" />
+			<img
+				class="mb-[2px] w-full max-w-60"
+				src="/blommor-save-the-date.png"
+				alt="illustrerade blommor"
+				height={64}
+				loading="lazy"
+			/>
+		</footer>
 	</body>
 </html>

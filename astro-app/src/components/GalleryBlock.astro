@@ -16,12 +16,15 @@ console.log('Gallery Block Data:', {
 {
 	images && (
 		<section id={blockId} class="mx-auto max-w-container">
-			<div class="block-content mx-auto max-w-[60ch] text-pretty">
-				{images.map((image: any) => (
+			<div class="grid gap-2 sm:grid-cols-[repeat(auto-fit,minmax(180px,1fr))] sm:gap-4 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+				{images.map((image: any, index: number) => (
 					<img
-						class="min-h-[200px] object-cover"
-						src={urlFor(image).height(1400).fit('min').auto('format').url()}
+						class={`h-full max-h-[720px] w-full object-cover ${
+							images.length % 2 !== 0 && index === images.length - 1 ? 'sm:col-span-2 sm:max-h-[420px]' : ''
+						}`}
+						src={urlFor(image).height(820).fit('min').auto('format').url()}
 						alt={(image.alt as string) || ''}
+						loading="lazy"
 					/>
 				))}
 			</div>
