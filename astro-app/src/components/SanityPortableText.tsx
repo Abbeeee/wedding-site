@@ -15,11 +15,11 @@ const portableTextComponents: PortableTextComponents = {
 				</a>
 			);
 		},
-		email: ({ value, children }: any) => {
-			return <a href={`mailto:${value.email}`}>{value.children}</a>;
+		emailAddress: ({ value, children }: any) => {
+			return <a href={`mailto:${value.emailAddress}`}>{children}</a>;
 		},
 		phone: ({ value, children }: any) => {
-			return <a href={`tel:${value.phone}`}>{value.children}</a>;
+			return <a href={`tel:${value.phone}`}>{children}</a>;
 		}
 	}
 };

@@ -5,6 +5,7 @@ import InputField from './Form/InputField';
 import Button from './Button';
 import CheckboxField from './Form/CheckboxField';
 import emailjs from '@emailjs/browser';
+import SanityPortableText from './SanityPortableText';
 
 type FormData = {
 	Email: string;
@@ -23,7 +24,14 @@ type FormData = {
 	BreakfastPartner?: boolean;
 };
 
-const RsvpForm: React.FC = () => {
+type Props = {
+	heading?: string | undefined;
+	text?: any;
+};
+
+const RsvpForm = (props: Props) => {
+	const heading = props.heading;
+	const introText = props.text;
 	const [isCoupleRsvp, setIsCoupleRsvp] = useState(false);
 	const [serverResponse, setServerResponse] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 	const {
@@ -95,20 +103,14 @@ const RsvpForm: React.FC = () => {
 	return (
 		<section id="rsvpForm" className="mx-auto max-w-container">
 			<section className="mx-auto max-w-lg">
-				<h2 className="mt-0 text-balance leading-tight sm:text-3xl md:text-5xl">OSA</h2>
-				<p className="mb-4 text-pretty">
-					OSA i formuläret nedan senast den 31 mars 2025. Ange nedan ifall du vill OSA för en eller två personer.
-					Anmälan utav tal görs i{' '}
-					<a href="#speechform" aria-label="Gå till formuläret för att anmäla tal">
-						formuläret
-					</a>{' '}
-					nedan. Om du har några frågor får du gärna höra av dig till våra
-					<a className="ml-1" href="#96d2e804b618" aria-label="Gå till sektionen för toastmasters">
-						toastmasters
-					</a>
-					.
-				</p>
-				{/* Add toggle at the top */}
+				<h2 className="mt-0 text-balance leading-tight sm:text-3xl md:text-5xl">{heading ? heading : 'OSA'}</h2>
+
+				{introText && (
+					<div className="mb-4">
+						<SanityPortableText content={introText} />
+					</div>
+				)}
+
 				<div className="mb-6 flex items-center gap-4">
 					<button
 						type="button"

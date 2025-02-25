@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form';
 import InputField from './Form/InputField';
 import Button from './Button';
 import emailjs from '@emailjs/browser';
+import SanityPortableText from './SanityPortableText';
 
 type FormData = {
 	Email: string;
@@ -11,7 +12,14 @@ type FormData = {
 	Namn: string;
 };
 
-const SpeechForm: React.FC = () => {
+type Props = {
+	heading?: string | undefined;
+	text?: any;
+};
+
+const SpeechForm = (props: Props) => {
+	const heading = props.heading;
+	const introText = props.text;
 	const [serverResponse, setServerResponse] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 	const {
 		handleSubmit,
@@ -66,16 +74,13 @@ const SpeechForm: React.FC = () => {
 	return (
 		<section id="speechform" className="mx-auto max-w-container">
 			<section className="mx-auto max-w-lg">
-				<h2 className="mt-0 text-balance leading-tight sm:text-3xl md:text-5xl">Tal</h2>
-				<p className="mb-4">
-					Anmäl ifall du önskar hålla tal eller spex i formuläret nedan senast den 30 april 2025. Ett bra riktmärke är
-					att hålla dig till 5 minuter. Antonia & Henrik kommer inte att se vilka som anmäler tal eller spex. Om du har
-					några frågor får du gärna höra av dig till våra
-					<a className="ml-1" href="#96d2e804b618" aria-label="Gå till sektionen för toastmasters">
-						toastmasters
-					</a>
-					.
-				</p>
+				<h2 className="mt-0 text-balance leading-tight sm:text-3xl md:text-5xl">{heading ? heading : 'Tal'}</h2>
+
+				{introText && (
+					<div className="mb-4">
+						<SanityPortableText content={introText} />
+					</div>
+				)}
 
 				<form className="border border-solid border-gray-300 p-4" onSubmit={handleSubmit(onSubmit)} noValidate>
 					{/* Common fields */}

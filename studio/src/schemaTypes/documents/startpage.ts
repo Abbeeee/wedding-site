@@ -52,6 +52,11 @@ export default defineType({
           title: 'PuffBlock',
           type: 'puffBlock',
         },
+        {
+          name: 'formBlock',
+          title: 'FormBlock',
+          type: 'formBlock',
+        },
       ],
     }),
     defineField({

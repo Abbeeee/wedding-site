@@ -61,7 +61,7 @@ export interface StartPage {
 		description: PortableTextBlock[];
 		icon: ImageAsset & { alt?: string };
 	}[];
-	blocks?: (TextBlock | ImageBlock | CenterTextBlock | PuffBlock | TextImageBlock)[];
+	blocks?: (TextBlock | ImageBlock | CenterTextBlock | PuffBlock | TextImageBlock | FormBlock)[];
 	callToAction?: {
 		text: string;
 		link: string;
@@ -120,4 +120,11 @@ export interface PuffBlockItem {
 		link?: string;
 		externalLink?: boolean;
 	};
+}
+
+export interface FormBlock {
+	_type: 'formBlock';
+	heading?: string;
+	text?: PortableTextBlock[];
+	selectedForm?: 'rsvp' | 'speech';
 }
