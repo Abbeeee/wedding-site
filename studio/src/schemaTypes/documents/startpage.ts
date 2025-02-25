@@ -57,6 +57,11 @@ export default defineType({
           title: 'FormBlock',
           type: 'formBlock',
         },
+        {
+          name: 'galleryBlock',
+          title: 'GalleryBlock',
+          type: 'galleryBlock',
+        },
       ],
     }),
     defineField({

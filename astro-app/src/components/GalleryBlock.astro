@@ -1,0 +1,30 @@
+---
+import { urlFor } from '../utils/image';
+
+const { block } = Astro.props;
+const blockId = block._key;
+const images = block.galleryItems.images;
+
+console.log('Gallery Block Data:', {
+	blockId,
+	hasImages: !!images,
+	imageCount: images?.length,
+	images
+});
+---
+
+{
+	images && (
+		<section id={blockId} class="mx-auto max-w-container">
+			<div class="block-content mx-auto max-w-[60ch] text-pretty">
+				{images.map((image: any) => (
+					<img
+						class="min-h-[200px] object-cover"
+						src={urlFor(image).height(1400).fit('min').auto('format').url()}
+						alt={(image.alt as string) || ''}
+					/>
+				))}
+			</div>
+		</section>
+	)
+}

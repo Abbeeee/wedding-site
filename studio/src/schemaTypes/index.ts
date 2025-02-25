@@ -9,6 +9,7 @@ import puffBlock from './objects/puffBlock'
 import textImageBlock from './objects/textImageBlock'
 import formBlock from './objects/formBlock'
 import settings from './documents/settings'
+import galleryBlock from './objects/galleryBlock'
 
 // Export an array of all the schema types.  This is used in the Sanity Studio configuration. https://www.sanity.io/docs/schema-types
 export const schemaTypes = [
@@ -23,4 +24,5 @@ export const schemaTypes = [
   centerTextBlock,
   puffBlock,
   formBlock,
+  galleryBlock,
 ]

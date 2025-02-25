@@ -2,13 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import { getPosts, getStartPage } from '../utils/sanity';
 import Slider from '../components/Slider.astro';
-import FormProvider from '../components/FormBlock.tsx';
 import ImageBlock from '../components/ImageBlock';
 import TextBlock from '../components/TextBlock.astro';
 import CenterTextBlock from '../components/CenterTextBlock.astro';
 import PuffBlock from '../components/PuffBlock.astro';
 import TextImageBlock from '../components/TextImageBlock.astro';
 import FormBlock from '../components/FormBlock.tsx';
+import GalleryBlock from '../components/GalleryBlock.astro';
 
 const startPage = await getStartPage();
 ---
@@ -40,6 +40,8 @@ const startPage = await getStartPage();
 					return <TextImageBlock block={block} />;
 				} else if (block._type == 'formBlock') {
 					return <FormBlock block={block} client:only="react" />;
+				} else if (block._type == 'galleryBlock') {
+					return <GalleryBlock block={block} />;
 				}
 			})
 	}
